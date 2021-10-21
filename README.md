@@ -1,4 +1,4 @@
-# web-ass
+# client
 
 ## Project setup
 ```
