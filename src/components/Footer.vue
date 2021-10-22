@@ -1,6 +1,7 @@
 <template>
   <footer id="footer">
     Footer
+    <h1>Hello</h1>
   </footer>
 </template>
 
@@ -10,6 +11,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
