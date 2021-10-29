@@ -5,14 +5,11 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import storeConfig from './store'
 import routes from './routes'
-import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.min.css'
-import 'vue-material/dist/theme/default.css'
+import vuetify from './plugin/vuetify'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
 Vue.config.productionTip = false
-Vue.use(VueMaterial)
 
 const store = new Vuex.Store(storeConfig)
 const router = new VueRouter({ routes, mode: 'history' })
@@ -21,5 +18,6 @@ const router = new VueRouter({ routes, mode: 'history' })
 new Vue({
   store,
   router,
+  vuetify,
   render: h => h(App),
 }).$mount('#app')
