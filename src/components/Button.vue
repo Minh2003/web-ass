@@ -1,38 +1,38 @@
 <template>
     <div v-if="text == 'Confirm'">
-      <md-button :style="[style, styleConfirm]">{{text}}</md-button>
+      <v-btn elevation="2" :style="[style, styleConfirm]">{{text}}</v-btn>
     </div>
 
     <div v-else-if="text == 'Cancel'">
-      <md-button :style="[style, styleConfirm, styleCancel]">{{text}}</md-button>
+      <v-btn elevation="2" :style="[style, styleConfirm, styleCancel]">{{text}}</v-btn>
     </div>
 
     <div v-else-if="text == 'Edit'">
-      <md-button :style="[style, styleEdit]">{{text}}</md-button>
+      <v-btn elevation="2" :style="[style, styleEdit]">{{text}}</v-btn>
     </div>
 
     <div v-else-if="text == 'Delete'">
-      <md-button :style="[style, styleEdit, styleDelete]">{{text}}</md-button>
+      <v-btn elevation="2" :style="[style, styleEdit, styleDelete]">{{text}}</v-btn>
     </div>
 
     <div v-else-if="text == 'Create Account'">
-      <md-button :style="[style, styleCreate]">{{text}}</md-button>
+      <v-btn elevation="2" :style="[style, styleCreate]">{{text}}</v-btn>
     </div>
 
     <div v-else-if="text == 'Add Product'">
-      <md-button :style="[style, styleAddPd]">{{text}}</md-button>
+      <v-btn elevation="2" :style="[style, styleAddPd]">{{text}}</v-btn>
     </div>
 
     <div v-else-if="text == 'Add New Picture'">
-      <md-button :style="[style, styleAddPt]">{{text}}</md-button>
+      <v-btn elevation="2" :style="[style, styleAddPt]">{{text}}</v-btn>
     </div>
 
     <div v-else-if="text == 'Book Your Table' || text == 'Book My Table' || text == 'Explore More'">
-      <md-button :style="[style, styleBook]">{{text}}</md-button>
+      <v-btn elevation="2" :style="[style, styleBook]">{{text}}</v-btn>
     </div>
 
     <div v-else>
-      <md-button :style="style">{{text}}</md-button>
+      <v-btn elevation="2" :style="style">{{text}}</v-btn>
     </div>
 </template>
 
@@ -53,7 +53,7 @@ export default {
           background: '#e1651f', 
           borderRadius: '5px' , 
           fontSize: '18px',
-          boxShadow: '0px 10px 30px rgba(64, 191, 255, 0.24)',
+          padding: '16px',
         },
         styleConfirm: {
           borderRadius: '6px',
