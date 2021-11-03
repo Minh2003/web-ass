@@ -1,11 +1,13 @@
 <template>
   <div>
-    Homepage
+    <top-nav-bar />
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'HomePage'
-  }
+import TopNavBar from "../components/TopNavBar.vue";
+export default {
+  components: { TopNavBar },
+  name: "HomePage",
+};
 </script>
