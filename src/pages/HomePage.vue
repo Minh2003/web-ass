@@ -1,13 +1,14 @@
 <template>
   <div>
-    <top-nav-bar />
+    home page ne
+    <comment />
   </div>
 </template>
 
 <script>
-import TopNavBar from "../components/TopNavBar.vue";
+import Comment from "../components/Comment.vue";
 export default {
-  components: { TopNavBar },
+  components: { Comment },
   name: "HomePage",
 };
 </script>

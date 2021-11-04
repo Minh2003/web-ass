@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <v-container fluid>
     <div class="d-flex">
-      <div class="mr-auto p-2">Logo</div>
+      <div class="mr-auto">Logo</div>
       <div class="NavBar">
         <v-btn depressed color="black" to="/admin">
           <span class="linkText">Home</span>
@@ -23,7 +23,7 @@
         </v-btn>
       </div>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -34,6 +34,8 @@ export default {
 
 <style scoped>
 .container {
+  width: 100vw;
+  margin: 0;
   background-color: black;
 }
 .linkText {
