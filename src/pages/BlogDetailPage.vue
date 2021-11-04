@@ -6,10 +6,8 @@
 
 <script>
 export default {
-  name: 'blogDetail'
-}
+  name: "blogDetail",
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -1,23 +1,5 @@
 <template>
   <div class="pagination">
-    <!-- <div class="pagination-item">
-      <button @click="onClickFirstPage" :disabled="isInFirstPage" type="button">
-        First
-      </button>
-    </div>
-
-    <div class="pagination-item">
-      <button
-        type="button"
-        @click="onClickPreviousPage"
-        :disabled="isInFirstPage"
-      >
-        Previous
-      </button>
-    </div> -->
-
-    <!-- Visible Buttons Start -->
-
     <div class="pagination-item" v-for="page in pages" :key="page.name">
       <button
         class="pagination-btn"
@@ -29,20 +11,6 @@
         {{ page.name }}
       </button>
     </div>
-
-    <!-- Visible Buttons End -->
-
-    <!-- <div class="pagination-item">
-      <button @click="onClickNextPage" :disabled="isInLastPage" type="button">
-        Next
-      </button>
-    </div>
-
-    <div class="pagination-item">
-      <button @click="onClickLastPage" :disabled="isInLastPage" type="button">
-        Last
-      </button>
-    </div> -->
   </div>
 </template>
 
@@ -110,20 +78,8 @@ export default {
     },
   },
   methods: {
-    onClickFirstPage() {
-      this.$emit("pagechanged", 1);
-    },
-    onClickPreviousPage() {
-      this.$emit("pagechanged", this.currentPage - 1);
-    },
     onClickPage(page) {
       this.$emit("pagechanged", page);
-    },
-    onClickNextPage() {
-      this.$emit("pagechanged", this.currentPage + 1);
-    },
-    onClickLastPage() {
-      this.$emit("pagechanged", this.totalPages);
     },
   },
 };

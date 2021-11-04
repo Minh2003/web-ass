@@ -1,27 +1,52 @@
 <template>
-  <div>
-    <div v-if="this.type === 'BlogTitle'" :style="[style]">
-      <div :style="[styleLabel, styleLabelBlog]">{{ label }}</div>
-      <textarea :style="[styleTextArea]" v-model="content"></textarea>
-    </div>
+  <div v-if="this.type === 'BlogTitle'" :style="[style]">
+    <div :style="[styleLabel, styleLabelBlog]">{{ label }}</div>
+    <textarea
+      :value="value"
+      :rows="rows"
+      @change="handleInputChange($event)"
+      :style="[styleTextArea]"
+    ></textarea>
+  </div>
 
-    <div v-if="this.type === 'BlogContent'" :style="[style]">
-      <div :style="[styleLabel, styleLabelBlog]">{{ label }}</div>
-      <textarea :style="[styleTextArea]" v-model="content"></textarea>
-    </div>
+  <div v-else-if="this.type === 'BlogContent'" :style="[style]">
+    <div :style="[styleLabel, styleLabelBlog]">{{ label }}</div>
+    <textarea
+      :value="value"
+      :rows="rows"
+      @change="handleInputChange($event)"
+      :style="[styleTextArea]"
+    ></textarea>
+  </div>
 
-    <div v-else-if="this.type === 'DishTitle'" :style="[style]">
-      <div :style="[styleLabel, styleLabelDish]">{{ label }}</div>
-      <textarea :style="[styleTextArea]" v-model="content"></textarea>
-    </div>
+  <div v-else-if="this.type === 'DishTitle'" :style="[style]">
+    <div :style="[styleLabel, styleLabelDish]">{{ label }}</div>
+    <textarea
+      :value="value"
+      :rows="rows"
+      @change="handleInputChange($event)"
+      :style="[styleTextArea]"
+    ></textarea>
+  </div>
 
-    <div v-else-if="this.type === 'DishDescription'" :style="[style]">
-      <div :style="[styleLabel, styleLabelDish]">{{ label }}</div>
-      <textarea
-        :style="[styleTextArea, styleTextAreaDishDescription]"
-        v-model="content"
-      ></textarea>
-    </div>
+  <div v-else-if="this.type === 'AccountEdit'" :style="[style]">
+    <div :style="[styleLabel, styleLabelDish]">{{ label }}</div>
+    <textarea
+      :value="value"
+      :rows="rows"
+      @change="handleInputChange($event)"
+      :style="[styleTextArea]"
+    ></textarea>
+  </div>
+
+  <div v-else-if="this.type === 'DishDescription'" :style="[style]">
+    <div :style="[styleLabel, styleLabelDish]">{{ label }}</div>
+    <textarea
+      :value="value"
+      :rows="rows"
+      @change="handleInputChange($event)"
+      :style="[styleTextArea, styleTextAreaDishDescription]"
+    ></textarea>
   </div>
 </template>
 
@@ -30,11 +55,33 @@ export default {
   name: "ControlField",
   props: {
     label: String,
-    width: String,
-    height: String,
-    rows: String,
+    width: {
+      type: String,
+      default: "100%",
+    },
+    // height: {
+    //   type: String,
+    //   default: "100%",
+    // },
+    rows: {
+      type: String,
+      default: "2",
+    },
     type: String,
-    content: String,
+    // content: {
+    //   type: String,
+    //   default: "",
+    // },
+    value: {
+      type: String,
+      default: "",
+    },
+  },
+  methods: {
+    handleInputChange(event) {
+      console.log(event.target.value);
+      this.$emit("onInputChange", event.target.value);
+    },
   },
   data() {
     return {
@@ -61,7 +108,7 @@ export default {
       },
       styleTextArea: {
         width: "100%",
-        height: this.height,
+        // height: this.height,
         fontFamily: "Poppins",
         padding: "16px 32px",
         fontSize: "12px",
@@ -72,6 +119,7 @@ export default {
         boxSizing: "border-box",
         border: "1px solid #ebf0ff",
         borderRadius: "5px",
+        resize: "none",
       },
       styleTextAreaDishDescription: {
         color: "#6a6a6a",

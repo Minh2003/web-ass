@@ -1,91 +1,82 @@
 <template>
-  <!-- User Admin Item -->
-  <md-content
-    v-if="type == 'User'"
-    :style="[style]"
-    class="md-layout md-gutter md-elevation-2"
-  >
-    <div :style="[element, primary]" class="md-layout-item" :class="layout[0]">
-      {{ items[0] }}
-    </div>
-    <div :style="[element, primary]" class="md-layout-item" :class="layout[1]">
-      {{ items[1] }}
-    </div>
-    <div
-      :style="[element, secondary]"
-      class="md-layout-item"
-      :class="layout[2]"
+  <div>
+    <!-- User Admin Item -->
+    <v-container
+      :class="`elevation-2`"
+      v-if="type == 'User'"
+      elevation="3"
+      :style="[style]"
     >
-      {{ items[2] }}
-    </div>
-    <div
-      :style="[element, secondary]"
-      class="md-layout-item"
-      :class="layout[3]"
-    >
-      {{ items[3] }}
-    </div>
-    <Button
-      :style="[element]"
-      class="md-layout-item"
-      :class="layout.slice(-2)[0]"
-      text="Edit"
-      :width="'96px'"
-      :height="'27px'"
-    />
-    <Button
-      :style="[element]"
-      class="md-layout-item"
-      :class="layout.slice(-1)[0]"
-      text="Delete"
-      :width="'96px'"
-      :height="'27px'"
-    />
-  </md-content>
+      <v-row align="center" justify="center">
+        <v-col :style="[element, primary]" :cols="layout[0]">
+          {{ items[0] }}
+        </v-col>
+        <v-col :style="[element, primary]" :cols="layout[1]">
+          {{ items[1] }}
+        </v-col>
+        <v-col :style="[element, secondary]" :cols="layout[2]">
+          {{ items[2] }}
+        </v-col>
+        <v-col :style="[element, secondary]" :cols="layout[3]">
+          {{ items[3] }}
+        </v-col>
+        <v-col :cols="layout.slice(-2)[0]">
+          <Button
+            :style="[element]"
+            text="Edit"
+            :width="'96px'"
+            :height="'27px'"
+          />
+        </v-col>
+        <v-col :cols="layout.slice(-2)[0]">
+          <Button
+            :style="[element]"
+            text="Delete"
+            :width="'96px'"
+            :height="'27px'"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
 
-  <!-- Dish Admin Item -->
-  <md-content
-    v-else-if="type == 'Dish'"
-    :style="[style]"
-    class="md-layout md-gutter md-elevation-2"
-  >
-    <div :style="[element, primary]" class="md-layout-item" :class="layout[0]">
-      {{ items[0] }}
-    </div>
-    <div :style="[element, primary]" class="md-layout-item" :class="layout[1]">
-      {{ items[1] }}
-    </div>
-    <div
-      :style="[element, secondary]"
-      class="md-layout-item"
-      :class="layout[2]"
+    <!-- Dish Admin Item -->
+    <v-container
+      :class="`elevation-2`"
+      v-else-if="type == 'Dish'"
+      :style="[style]"
     >
-      <img :style="[dishImage]" :src="items[2]" :alt="items[2]" />
-    </div>
-    <div
-      :style="[element, secondary]"
-      class="md-layout-item"
-      :class="layout[3]"
-    >
-      {{ items[3].slice(0, 80) + "..." }}
-    </div>
-    <Button
-      :style="[element]"
-      class="md-layout-item"
-      :class="layout.slice(-2)[0]"
-      text="Edit"
-      :width="'96px'"
-      :height="'27px'"
-    />
-    <Button
-      :style="[element]"
-      class="md-layout-item"
-      :class="layout.slice(-1)[0]"
-      text="Delete"
-      :width="'96px'"
-      :height="'27px'"
-    />
-  </md-content>
+      <v-row align="center" justify="center">
+        <v-col :style="[element, primary]" :cols="layout[0]">
+          {{ items[0] }}
+        </v-col>
+        <v-col :style="[element, primary]" :cols="layout[1]">
+          {{ items[1] }}
+        </v-col>
+        <v-col :style="[element, secondary]" :cols="layout[2]">
+          <img :style="[dishImage]" :src="items[2]" :alt="items[2]" />
+        </v-col>
+        <v-col :style="[element, secondary]" :cols="layout[3]">
+          {{ items[3].slice(0, 40) + "..." }}
+        </v-col>
+        <v-col :cols="layout.slice(-2)[0]">
+          <Button
+            :style="[element]"
+            text="Edit"
+            :width="'90px'"
+            :height="'27px'"
+          />
+        </v-col>
+        <v-col :cols="layout.slice(-2)[0]">
+          <Button
+            :style="[element]"
+            text="Delete"
+            :width="'90px'"
+            :height="'27px'"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
