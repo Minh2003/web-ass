@@ -47,13 +47,13 @@
     }}</v-btn>
   </div>
 
-  <div
-    v-else-if="
-      text == 'Book Your Table' ||
-        text == 'Book My Table' ||
-        text == 'Explore More'
-    "
-  >
+  <div v-else-if="text == 'Book Your Table' || text == 'Book My Table'">
+    <v-btn @click="raiseEvent" elevation="2" :style="[style, styleBook]">{{
+      text
+    }}</v-btn>
+  </div>
+
+  <div v-else-if="text == 'Explore More'">
     <v-btn @click="raiseEvent" elevation="2" :style="[style, styleBook]">{{
       text
     }}</v-btn>

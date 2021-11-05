@@ -263,6 +263,7 @@
         :label="'Your Messages'"
       />
       <Button
+        class="btn-wrapper"
         @onClick="handleSumbit"
         text="Book Your Table"
         width="207px"
@@ -300,7 +301,7 @@ export default {
     },
 
     handleSumbit() {
-      console.log("Button Click");
+      // console.log("Button Click");
       this.$emit("onSubmit");
     },
   },
@@ -317,4 +318,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.btn-wrapper {
+  margin: 10px 0 50px 0;
+}
+</style>
