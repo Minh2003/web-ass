@@ -3,20 +3,20 @@
     <div class="d-flex">
       <div class="mr-auto">Logo</div>
       <div class="NavBar">
-        <v-btn depressed color="black" to="/admin">
+        <v-btn depressed color="black" to="/">
           <span class="linkText">Home</span>
         </v-btn>
         <v-btn depressed color="black" to="/admin">
           <span class="linkText">About</span>
         </v-btn>
-        <v-btn depressed color="black" to="/admin">
+        <v-btn depressed color="black" to="/menu">
           <span class="linkText">Menu</span>
         </v-btn>
         <v-btn depressed color="black" to="/admin">
           <span class="linkText">Blog</span>
         </v-btn>
         <v-btn depressed color="black" to="/admin">
-          <span class="linkText">Make Reservtion</span>
+          <span class="linkText">Make Reservation</span>
         </v-btn>
         <v-btn depressed color="black" to="/admin">
           <span class="linkText">Sign in</span>

@@ -6,7 +6,6 @@
     <div class="dish-container">
         <p class="dish-title">{{name}}</p>
         <p class="dish-description">{{description}}</p>
-        <p class="dish-price">${{price}}</p>
     </div>
   </v-card>
 </template>
@@ -17,7 +16,6 @@ export default {
     props: {
         name: String,
         description: String,
-        price: String,
         img: String,
     }
 }
@@ -26,7 +24,7 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
     .dish-container {
-        padding: 3% 7% 4% 7%;
+        padding: 3% 7% 5% 7%;
     }
     .dish-title, .dish-description, .dish-price {
         margin: 5px 0px;
