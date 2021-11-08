@@ -4,6 +4,8 @@ import BlogDetailPage from "./pages/BlogDetailPage";
 import HomePage from "./pages/HomePage";
 import DemoComponent from "./pages/DemoComponent";
 import MenuPage from "./pages/MenuPage";
+import ReservationPage from "./pages/ReservationPage";
+import EditAccountPage from "./pages/EditAccountPage";
 
 const routes = [
   { path: "/", name: "homePage", component: HomePage },
@@ -12,6 +14,22 @@ const routes = [
   { path: "/blog", name: "blog", component: BlogPage },
   { path: "/menu", name: "menu", component: MenuPage },
   { path: "/demo", name: "demoComponent", component: DemoComponent },
+  { path: "/reservation", name: "makeReservation", component: ReservationPage },
+  {
+    path: "/account",
+    name: "editAccount",
+    component: EditAccountPage,
+    children: [
+      {
+        path: "username",
+        name: "editAccountUsername",
+      },
+      {
+        path: "password",
+        name: "editAccountPassword",
+      },
+    ],
+  },
 ];
 
 export default routes;
