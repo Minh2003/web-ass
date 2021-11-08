@@ -7,6 +7,7 @@ import storeConfig from './store'
 import routes from './routes'
 import vuetify from './plugin/vuetify'
 
+
 Vue.use(Vuex)
 Vue.use(VueRouter)
 Vue.config.productionTip = false
