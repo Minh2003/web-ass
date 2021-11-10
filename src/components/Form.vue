@@ -2,12 +2,12 @@
   <div v-if="type === 'Login'">
     <v-form class="d-flex flex-wrap justify-center">
       <FormField
-        @onInputChange="handleFormChange($event, 'email')"
-        ref="email"
-        name="email"
-        :value="data.email"
-        type="EmailIcon"
-        :label="'Email'"
+        @onInputChange="handleFormChange($event, 'username')"
+        ref="username"
+        name="username"
+        :value="data.username"
+        type="UsernameIcon"
+        :label="'Username'"
       />
       <FormField
         @onInputChange="handleFormChange($event, 'password')"
@@ -19,7 +19,7 @@
       />
       <Button
         @onClick="handleSumbit"
-        text="Confirm"
+        text="Log in"
         width="257px"
         height="64px"
       />
@@ -65,7 +65,7 @@
       />
       <Button
         @onClick="handleSumbit"
-        text="Confirm"
+        text="Sign up"
         width="257px"
         height="64px"
       />

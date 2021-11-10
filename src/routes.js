@@ -6,6 +6,8 @@ import DemoComponent from "./pages/DemoComponent";
 import MenuPage from "./pages/MenuPage";
 import ReservationPage from "./pages/ReservationPage";
 import EditAccountPage from "./pages/EditAccountPage";
+import AuthenticatePage from "./pages/AuthenticatePage"
+import RegisterPage from "./pages/RegisterPage"
 
 const routes = [
   { path: "/", name: "homePage", component: HomePage },
@@ -15,6 +17,8 @@ const routes = [
   { path: "/menu", name: "menu", component: MenuPage },
   { path: "/demo", name: "demoComponent", component: DemoComponent },
   { path: "/reservation", name: "makeReservation", component: ReservationPage },
+  { path: "/auth", name: "Authenticate", component: AuthenticatePage },
+  { path: "/reg", name: "Register", component: RegisterPage },
   {
     path: "/account",
     name: "editAccount",

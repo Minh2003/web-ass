@@ -12,9 +12,6 @@
 <script>
 export default {
   data() {
-    return {
-      dialog: this.isOpen,
-    };
   },
   props: ["title", "content"],
 };
