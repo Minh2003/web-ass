@@ -16,7 +16,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="gray" @click="dialog = false"> Cancel </v-btn>
+          <v-btn depressed color="gray" @click="dialog = false"> Cancel </v-btn>
           <v-btn color="#E1651F" @click="dialog = false">
             <span class="white--text">Confirm</span>
           </v-btn>

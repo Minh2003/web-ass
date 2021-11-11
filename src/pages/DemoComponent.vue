@@ -6,12 +6,12 @@
 
     <br />
     <br />
-    <!-- <Form
+    <Form
       :type="'Login'"
       :data="formData"
       @onFormChange="handleFormChange"
       @onSubmit="handleSubmit"
-    /> -->
+    />
 
     <!-- <div style="width: 30%; margin: auto;">
       <Form
@@ -58,7 +58,7 @@
       />
     </div> -->
 
-    <div style="width: 30%; margin: auto;">
+    <div style="width: 30%; margin: auto">
       <Form
         :type="'Reservation'"
         :data="formData"

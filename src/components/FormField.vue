@@ -208,7 +208,7 @@ export default {
 
   methods: {
     handleInputChange(newValue) {
-      console.log(newValue);
+      //console.log(newValue);
       this.$emit("onInputChange", newValue);
     },
   },
