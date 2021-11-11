@@ -145,10 +145,6 @@ export default {
 
       // Add field with name in errorMessages for others' validation
       schema: yup.object().shape({
-        fullname: yup
-          .string()
-          .required()
-          .label("Your name"),
         email: yup
           .string()
           .email()

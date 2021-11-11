@@ -75,10 +75,6 @@ export default {
       },
 
       schema: yup.object().shape({
-        fullname: yup
-          .string()
-          .required()
-          .label("Your name"),
         email: yup
           .string()
           .email()
