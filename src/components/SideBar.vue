@@ -1,7 +1,12 @@
 <template>
   <v-navigation-drawer width="30%" permanent>
-    <v-list>
-      <v-list-item v-for="([icon, text], i) in items" :key="i" link>
+    <v-list class="sidebar-wrapper">
+      <v-list-item
+        v-for="([icon, text, link], i) in items"
+        :key="i"
+        style="[style]"
+        :to="{ name: link }"
+      >
         <v-list-item-icon>
           <v-icon>{{ icon }}</v-icon>
         </v-list-item-icon>
@@ -19,10 +24,20 @@ export default {
   name: "SideBar",
   data: () => ({
     items: [
-      ["mdi-account-outline", "User's Information"],
-      ["mdi-lock-outline", "Change Password"],
-      ["mdi-logout", "Log Out"],
+      ["mdi-account-outline", "User's Information", "editAccountProfile"],
+      ["mdi-lock-outline", "Change Password", "editAccountPassword"],
+      ["mdi-logout", "Log Out", "logout"],
     ],
+    style: {
+      backgroundColor: "#efefef",
+      marginBottom: "30px",
+    },
   }),
 };
 </script>
+
+<style scoped>
+.sidebar-wrapper {
+  margin: 150px 50px auto 0px;
+}
+</style>

@@ -6,6 +6,7 @@ import DemoComponent from "./pages/DemoComponent";
 import MenuPage from "./pages/MenuPage";
 import ReservationPage from "./pages/ReservationPage";
 import EditAccountPage from "./pages/EditAccountPage";
+import Form from "./components/Form";
 
 const routes = [
   { path: "/", name: "homePage", component: HomePage },
@@ -21,12 +22,20 @@ const routes = [
     component: EditAccountPage,
     children: [
       {
-        path: "username",
-        name: "editAccountUsername",
+        path: "profile",
+        name: "editAccountProfile",
+        component: Form,
+        props: {
+          type: "EditAccount",
+        },
       },
       {
         path: "password",
         name: "editAccountPassword",
+        component: Form,
+        props: {
+          type: "EditPassword",
+        },
       },
     ],
   },

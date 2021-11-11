@@ -2,11 +2,9 @@
   <div class="edit-account-page-wrapper">
     <SideBar />
     <div class="update-form-wrapper">
-      <router-view :key="$route.path" />
-      <!-- Pass data to router-view ? -->
       <div style="width: 80%; margin: auto;">
-        <Form
-          :type="'EditAccount'"
+        <router-view
+          :key="$route.path"
           :data="formData"
           @onFormChange="handleFormChange"
           @onSubmit="handleSubmit"
@@ -17,12 +15,11 @@
 </template>
 
 <script>
-import Form from "../components/Form.vue";
 import SideBar from "../components/SideBar.vue";
 
 export default {
   name: "EditAccountPage",
-  components: { Form, SideBar },
+  components: { SideBar },
   props: {},
   data() {
     return {
@@ -32,14 +29,28 @@ export default {
       },
       formData: {
         // Vue Object Data will be convert into Observer
-        username: "abc",
-        email: "abc@gmail.com",
-        phone: "123",
+        username: "",
+        email: "",
+        phone: "",
         password: "",
         newPassword: "",
         confirmNewPassword: "",
       },
     };
+  },
+  methods: {
+    handleFormChange(newData) {
+      this.formData[newData.name] = newData.value;
+    },
+
+    handleSubmit() {
+      if (this.$route.name === "editAccountProfile") {
+        console.log("Submit edit profile");
+      } else if (this.$route.name === "editAccountPassword") {
+        console.log("Submit to edit password");
+      }
+      console.log(this.formData);
+    },
   },
 };
 </script>
@@ -59,6 +70,7 @@ export default {
 }
 
 .update-form-wrapper {
+  margin: 100px 0 100px 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
