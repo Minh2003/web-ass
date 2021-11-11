@@ -2,6 +2,7 @@
   <div v-if="this.type === 'UsernameIcon'" :style="[this.style]">
     <v-text-field
       outlined
+      :error-messages="errorMessage"
       :value="value"
       :placeholder="placeHolder"
       :name="name"
@@ -21,6 +22,7 @@
     <v-text-field
       type="password"
       outlined
+      :error-messages="errorMessage"
       :value="value"
       :placeholder="placeHolder"
       :name="name"
@@ -38,6 +40,7 @@
   <div v-else-if="this.type === 'EmailIcon'" :style="[this.style]">
     <v-text-field
       outlined
+      :error-messages="errorMessage"
       :value="value"
       :placeholder="placeHolder"
       :name="name"
@@ -55,6 +58,7 @@
   <div v-else-if="this.type === 'PhoneIcon'" :style="[this.style]">
     <v-text-field
       outlined
+      :error-messages="errorMessage"
       :value="value"
       :placeholder="placeHolder"
       :name="name"
@@ -72,6 +76,7 @@
   <div v-else-if="this.type === 'PasswordNoLabel'" :style="[this.style]">
     <div :style="[styleLabel, styleLabelDish]">{{ label }}</div>
     <v-text-field
+      :error-messages="errorMessage"
       :value="value"
       outlined
       label=""
@@ -82,13 +87,15 @@
       no-resize
       class="account-form-field"
       @change="handleInputChange($event)"
-      >{{ label }}</v-text-field
     >
+      {{ label }}
+    </v-text-field>
   </div>
 
   <div v-else-if="this.type === 'NoIcon'" :style="[this.style]">
     <v-text-field
       class="reservation-input"
+      :error-messages="errorMessage"
       :value="value"
       filled
       rounded
@@ -98,13 +105,15 @@
       :name="name"
       no-resize
       @change="handleInputChange($event)"
-      >{{ label }}</v-text-field
     >
+      {{ label }}
+    </v-text-field>
   </div>
 
   <div v-else-if="this.type === 'NoIconMessage'" :style="[this.style]">
     <v-textarea
       class="reservation-input"
+      :error-messages="errorMessage"
       :value="value"
       filled
       rounded
@@ -115,8 +124,9 @@
       :rows="5"
       no-resize
       @change="handleInputChange($event)"
-      >{{ label }}</v-textarea
     >
+      {{ label }}
+    </v-textarea>
   </div>
 </template>
 
@@ -155,9 +165,13 @@ export default {
     name: {
       type: String,
     },
-
     // Input form submit value
     value: {
+      type: String,
+      default: "",
+    },
+    // Error messages
+    errorMessage: {
       type: String,
       default: "",
     },
@@ -187,7 +201,6 @@ export default {
       },
       styleTextArea: {
         width: "100%",
-        // height: this.height,
         fontFamily: "Poppins",
         padding: "16px 32px",
         fontSize: "12px",

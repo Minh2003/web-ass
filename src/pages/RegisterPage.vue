@@ -77,7 +77,7 @@ export default {
         headers: {},
       };
 
-      $.ajax(settings).done(function (response) {
+      $.ajax(settings).done(function(response) {
         const a = JSON.parse(response).response;
         console.log(response);
         __this.item = a;

@@ -8,6 +8,7 @@
           :data="formData"
           @onFormChange="handleFormChange"
           @onSubmit="handleSubmit"
+          :errorMessages="errorMessages"
         />
       </div>
     </div>
@@ -16,6 +17,7 @@
 
 <script>
 import SideBar from "../components/SideBar.vue";
+import * as yup from "yup";
 
 export default {
   name: "EditAccountPage",
@@ -36,11 +38,66 @@ export default {
         newPassword: "",
         confirmNewPassword: "",
       },
+      errorMessages: {
+        // Vue Object Data will be convert into Observer
+        username: "",
+        email: "",
+        phone: "",
+        password: "",
+        newPassword: "",
+        confirmNewPassword: "",
+      },
+      schema: yup.object().shape({
+        fullname: yup
+          .string()
+          .required()
+          .label("Your name"),
+        email: yup
+          .string()
+          .email()
+          .label("Email"),
+        phone: yup
+          .string()
+          .matches(/^[0-9]{10}$/, "Phone number must be 10 digits"),
+        date: yup
+          .string()
+          .matches(
+            /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/,
+            "Date must be of YYYY-MM-DD"
+          ),
+        time: yup
+          .string()
+          .matches(
+            /(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)/gm,
+            "Time must be of HH:MM:SS"
+          ),
+        totalPeople: yup
+          .number()
+          .min(1)
+          .max(30)
+          .label("Number of persons"),
+      }),
     };
   },
   methods: {
+    async handleInputValidation({ name, value }) {
+      let validationResult = await this.schema
+        .validate({ [name]: value })
+        .catch((error) => {
+          return error;
+        });
+      if (validationResult.errors) {
+        console.log(validationResult.errors[0]);
+        this.errorMessages[name] = validationResult.errors[0];
+      } else {
+        this.errorMessages[name] = "";
+      }
+    },
+
     handleFormChange(newData) {
       this.formData[newData.name] = newData.value;
+      console.log("Form Changed");
+      this.handleInputValidation(newData);
     },
 
     handleSubmit() {
