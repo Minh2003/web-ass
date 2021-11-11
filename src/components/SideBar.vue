@@ -38,6 +38,6 @@ export default {
 
 <style scoped>
 .sidebar-wrapper {
-  margin: 150px 50px auto 0px;
+  margin: 150px 50px 150px 0px;
 }
 </style>
