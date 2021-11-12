@@ -46,7 +46,7 @@ export default {
         getMenu() {
             const __this = this;
             var settings = {
-                url: "http://localhost/web-ass-server/menu",
+                url: `${process.env.VUE_APP_API_URL}/menu`,
                 method: "GET",
                 timeout: 0,
             };
