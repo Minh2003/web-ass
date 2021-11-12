@@ -9,46 +9,9 @@
             </div>
         </div>
         <div class="d-flex flex-wrap justify-center">
-            <Dish 
-                name="Chips"
-                description="Aenean commodo ligula eget dolor aenean massa. Cum sociis natoque"
-                img="https://lh3.googleusercontent.com/1L1ZDLSUZnLZojS4yKUZp3QwCB44PRhCL_IgnmyqittiC8505gPd-yE9QMqLN0KWrW89s29q4lxgpGx59yakM_Q=s640-c-rw-v1-e365"
-            />
-            <Dish 
-                name="Chips"
-                description="Aenean commodo ligula eget dolor aenean massa. Cum sociis natoque"
-                img="https://lh3.googleusercontent.com/1L1ZDLSUZnLZojS4yKUZp3QwCB44PRhCL_IgnmyqittiC8505gPd-yE9QMqLN0KWrW89s29q4lxgpGx59yakM_Q=s640-c-rw-v1-e365"
-            />
-            <Dish 
-                name="Chips"
-                description="Aenean commodo ligula eget dolor aenean massa. Cum sociis natoque"
-                img="https://lh3.googleusercontent.com/1L1ZDLSUZnLZojS4yKUZp3QwCB44PRhCL_IgnmyqittiC8505gPd-yE9QMqLN0KWrW89s29q4lxgpGx59yakM_Q=s640-c-rw-v1-e365"
-            />
-            <Dish 
-                name="Chips"
-                description="Aenean commodo ligula eget dolor aenean massa. Cum sociis natoque"
-                img="https://lh3.googleusercontent.com/1L1ZDLSUZnLZojS4yKUZp3QwCB44PRhCL_IgnmyqittiC8505gPd-yE9QMqLN0KWrW89s29q4lxgpGx59yakM_Q=s640-c-rw-v1-e365"
-            />
-            <Dish 
-                name="Chips"
-                description="Aenean commodo ligula eget dolor aenean massa. Cum sociis natoque"
-                img="https://lh3.googleusercontent.com/1L1ZDLSUZnLZojS4yKUZp3QwCB44PRhCL_IgnmyqittiC8505gPd-yE9QMqLN0KWrW89s29q4lxgpGx59yakM_Q=s640-c-rw-v1-e365"
-            />
-            <Dish 
-                name="Chips"
-                description="Aenean commodo ligula eget dolor aenean massa. Cum sociis natoque"
-                img="https://lh3.googleusercontent.com/1L1ZDLSUZnLZojS4yKUZp3QwCB44PRhCL_IgnmyqittiC8505gPd-yE9QMqLN0KWrW89s29q4lxgpGx59yakM_Q=s640-c-rw-v1-e365"
-            />
-            <Dish 
-                name="Chips"
-                description="Aenean commodo ligula eget dolor aenean massa. Cum sociis natoque"
-                img="https://lh3.googleusercontent.com/1L1ZDLSUZnLZojS4yKUZp3QwCB44PRhCL_IgnmyqittiC8505gPd-yE9QMqLN0KWrW89s29q4lxgpGx59yakM_Q=s640-c-rw-v1-e365"
-            />
-            <Dish 
-                name="Chips"
-                description="Aenean commodo ligula eget dolor aenean massa. Cum sociis natoque"
-                img="https://lh3.googleusercontent.com/1L1ZDLSUZnLZojS4yKUZp3QwCB44PRhCL_IgnmyqittiC8505gPd-yE9QMqLN0KWrW89s29q4lxgpGx59yakM_Q=s640-c-rw-v1-e365"
-            />
+            <div v-for="dish in dishes" :key="dish.id">
+                <Dish :dish="dish" />
+            </div>
         </div>
         <div class="btn-wrapper d-flex justify-center">
             <div>
@@ -63,6 +26,7 @@
 </template>
 
 <script>
+import $ from 'jquery';
 import Dish from '../components/Dish.vue';
 import Button from '../components/Button.vue';
 export default {
@@ -70,7 +34,32 @@ export default {
     components: {
         Dish,
         Button,
-    }
+    },
+    data() {
+        return {
+            dishes: [],
+        }
+    },
+    methods: {
+        getMenu() {
+            const __this = this;
+            var settings = {
+                url: "http://localhost/web-ass-server/menu",
+                method: "GET",
+                timeout: 0,
+            };
+
+            $.ajax(settings).done(function (response) {
+                const a = JSON.parse(response).response;
+                __this.dishes = a;
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus + ': ' + errorThrown);
+            });
+        },
+    },
+    beforeMount() {
+        this.getMenu();
+    },
 }
 </script>
 
@@ -88,6 +77,7 @@ export default {
 .menu-description {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     text-align: center;
+    margin: 0% 0% -1% 0%;
 }
 .btn-wrapper {
     margin: 25px 0 65px 0;
