@@ -1,12 +1,17 @@
 <template>
   <div v-if="text == 'Confirm'">
-    <v-btn @click="raiseEvent" elevation="2" :style="[style, styleConfirm]">{{
-      text
-    }}</v-btn>
+    <v-btn
+      :disabled="isDisabled"
+      @click="raiseEvent"
+      elevation="2"
+      :style="[style, styleConfirm]"
+      >{{ text }}</v-btn
+    >
   </div>
 
   <div v-else-if="text == 'Cancel'">
     <v-btn
+      :disabled="isDisabled"
       @click="raiseEvent"
       elevation="2"
       :style="[style, styleConfirm, styleCancel]"
@@ -15,13 +20,18 @@
   </div>
 
   <div v-else-if="text == 'Edit'">
-    <v-btn @click="raiseEvent" elevation="2" :style="[style, styleEdit]">{{
-      text
-    }}</v-btn>
+    <v-btn
+      :disabled="isDisabled"
+      @click="raiseEvent"
+      elevation="2"
+      :style="[style, styleEdit]"
+      >{{ text }}</v-btn
+    >
   </div>
 
   <div v-else-if="text == 'Delete'">
     <v-btn
+      :disabled="isDisabled"
       @click="raiseEvent"
       elevation="2"
       :style="[style, styleEdit, styleDelete]"
@@ -30,37 +40,63 @@
   </div>
 
   <div v-else-if="text == 'Create Account'">
-    <v-btn @click="raiseEvent" elevation="2" :style="[style, styleCreate]">{{
-      text
-    }}</v-btn>
+    <v-btn
+      :disabled="isDisabled"
+      @click="raiseEvent"
+      elevation="2"
+      :style="[style, styleCreate]"
+      >{{ text }}</v-btn
+    >
   </div>
 
   <div v-else-if="text == 'Add Product'">
-    <v-btn @click="raiseEvent" elevation="2" :style="[style, styleAddPd]">{{
-      text
-    }}</v-btn>
+    <v-btn
+      :disabled="isDisabled"
+      @click="raiseEvent"
+      elevation="2"
+      :style="[style, styleAddPd]"
+      >{{ text }}</v-btn
+    >
   </div>
 
   <div v-else-if="text == 'Add New Picture'">
-    <v-btn @click="raiseEvent" elevation="2" :style="[style, styleAddPt]">{{
-      text
-    }}</v-btn>
+    <v-btn
+      :disabled="isDisabled"
+      @click="raiseEvent"
+      elevation="2"
+      :style="[style, styleAddPt]"
+      >{{ text }}</v-btn
+    >
   </div>
 
-  <div
-    v-else-if="
-      text == 'Book Your Table' ||
-        text == 'Book My Table' ||
-        text == 'Explore More'
-    "
-  >
-    <v-btn @click="raiseEvent" elevation="2" :style="[style, styleBook]">{{
-      text
-    }}</v-btn>
+  <div v-else-if="text == 'Book Your Table' || text == 'Book My Table'">
+    <v-btn
+      :disabled="isDisabled"
+      @click="raiseEvent"
+      elevation="2"
+      :style="[style, styleBook]"
+      >{{ text }}</v-btn
+    >
+  </div>
+
+  <div v-else-if="text == 'Explore More'">
+    <v-btn
+      :disabled="isDisabled"
+      @click="raiseEvent"
+      elevation="2"
+      :style="[style, styleBook]"
+      >{{ text }}</v-btn
+    >
   </div>
 
   <div v-else>
-    <v-btn @click="raiseEvent" elevation="2" :style="style">{{ text }}</v-btn>
+    <v-btn
+      :disabled="isDisabled"
+      @click="raiseEvent"
+      elevation="2"
+      :style="style"
+      >{{ text }}</v-btn
+    >
   </div>
 </template>
 
@@ -71,6 +107,10 @@ export default {
     text: String,
     width: String,
     height: String,
+    isDisabled: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   methods: {

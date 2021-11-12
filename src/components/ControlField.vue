@@ -7,6 +7,7 @@
       @change="handleInputChange($event)"
       :style="[styleTextArea]"
     ></textarea>
+    <div :style="[styleLabel, styleError]">{{ errorMessage }}</div>
   </div>
 
   <div v-else-if="this.type === 'BlogContent'" :style="[style]">
@@ -17,6 +18,7 @@
       @change="handleInputChange($event)"
       :style="[styleTextArea]"
     ></textarea>
+    <div :style="[styleLabel, styleError]">{{ errorMessage }}</div>
   </div>
 
   <div v-else-if="this.type === 'DishTitle'" :style="[style]">
@@ -26,7 +28,9 @@
       :rows="rows"
       @change="handleInputChange($event)"
       :style="[styleTextArea]"
+      :disabled="label === 'Dish Id'"
     ></textarea>
+    <div :style="[styleLabel, styleError]">{{ errorMessage }}</div>
   </div>
 
   <div v-else-if="this.type === 'AccountEdit'" :style="[style]">
@@ -37,6 +41,7 @@
       @change="handleInputChange($event)"
       :style="[styleTextArea]"
     ></textarea>
+    <div :style="[styleLabel, styleError]">{{ errorMessage }}</div>
   </div>
 
   <div v-else-if="this.type === 'DishDescription'" :style="[style]">
@@ -47,6 +52,7 @@
       @change="handleInputChange($event)"
       :style="[styleTextArea, styleTextAreaDishDescription]"
     ></textarea>
+    <div :style="[styleLabel, styleError]">{{ errorMessage }}</div>
   </div>
 </template>
 
@@ -59,20 +65,16 @@ export default {
       type: String,
       default: "100%",
     },
-    // height: {
-    //   type: String,
-    //   default: "100%",
-    // },
     rows: {
       type: String,
       default: "2",
     },
     type: String,
-    // content: {
-    //   type: String,
-    //   default: "",
-    // },
     value: {
+      type: String,
+      default: "",
+    },
+    errorMessage: {
       type: String,
       default: "",
     },
@@ -105,6 +107,9 @@ export default {
       },
       styleLabelDish: {
         color: "#223263",
+      },
+      styleError: {
+        color: "red",
       },
       styleTextArea: {
         width: "100%",

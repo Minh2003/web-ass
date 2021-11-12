@@ -15,11 +15,15 @@
         <v-btn depressed color="black" to="/admin">
           <span class="linkText">Blog</span>
         </v-btn>
-        <v-btn depressed color="black" to="/admin">
+        <v-btn depressed color="black" to="/reservation">
           <span class="linkText">Make Reservation</span>
         </v-btn>
-        <v-btn depressed color="black" to="/admin">
+        <v-btn depressed color="black" to="/auth">
           <span class="linkText">Sign in</span>
+        </v-btn>
+
+        <v-btn depressed color="black" to="/account">
+          <span class="linkText"> MyAcccount</span>
         </v-btn>
       </div>
     </div>

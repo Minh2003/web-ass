@@ -26,7 +26,7 @@
       </div>
       <v-spacer />
       <div>
-        <v-btn color="#e1651f"> <div class="buttonText">Send</div> </v-btn>
+        <v-btn color="#e1651f"> <div class="buttonText">Delete</div> </v-btn>
       </div>
       <v-spacer />
       <v-spacer />
@@ -36,44 +36,8 @@
 </template>
 
 <script>
-import $ from "jquery";
 export default {
-  name: "comment",
-  props:{
-    id: {
-      type: String,
-      default: "",
-    },
-  },
-  data() {
-    return {
-      commentData: "",
-    };
-  },
-
-  methods: {
-    PostComment() {
-      var settings = {
-        url: "http://localhost/comment/create",
-        method: "POST",
-        timeout: 0,
-        data: {
-          blogId: this.id,
-          description: this.commentData,
-          userId: ""
-        },
-        headers: {},
-      };
-
-      $.ajax(settings).then((response) => {
-        this.isLoading = false;
-        console.log(response);
-        const a = JSON.parse(response).response;
-        this.item = a;
-        console.log(this.item);
-      });
-    },
-  },
+  name: "commentListItem",
 };
 </script>
 

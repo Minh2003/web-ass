@@ -2,12 +2,13 @@
   <div v-if="type === 'Login'">
     <v-form class="d-flex flex-wrap justify-center">
       <FormField
-        @onInputChange="handleFormChange($event, 'email')"
-        ref="email"
-        name="email"
-        :value="data.email"
-        type="EmailIcon"
-        :label="'Email'"
+        @onInputChange="handleFormChange($event, 'username')"
+        ref="username"
+        name="username"
+        :value="data.username"
+        type="UsernameIcon"
+        :label="'Username'"
+        :errorMessage="errorMessages.username"
       />
       <FormField
         @onInputChange="handleFormChange($event, 'password')"
@@ -16,12 +17,14 @@
         :value="data.password"
         type="PasswordIcon"
         :label="'Password'"
+        :errorMessage="errorMessages.password"
       />
       <Button
         @onClick="handleSumbit"
-        text="Confirm"
+        text="Log in"
         width="257px"
         height="64px"
+        :isDisabled="isDisabled"
       />
     </v-form>
   </div>
@@ -34,6 +37,7 @@
         :value="data.username"
         type="UsernameIcon"
         :label="'Username'"
+        :errorMessage="errorMessages.username"
       />
       <FormField
         @onInputChange="handleFormChange($event, 'phone')"
@@ -41,11 +45,13 @@
         :value="data.phone"
         type="PhoneIcon"
         :label="'Phone'"
+        :errorMessage="errorMessages.phone"
       />
       <FormField
         @onInputChange="handleFormChange($event, 'email')"
         name="email"
         :value="data.email"
+        :errorMessage="errorMessages.email"
         type="EmailIcon"
         :label="'Email'"
       />
@@ -55,6 +61,7 @@
         :value="data.password"
         type="PasswordIcon"
         :label="'Password'"
+        :errorMessage="errorMessages.password"
       />
       <FormField
         @onInputChange="handleFormChange($event, 'confirmPassword')"
@@ -62,12 +69,14 @@
         :value="data.confirmPassword"
         type="PasswordIcon"
         :label="'Confirm Password'"
+        :errorMessage="errorMessages.password"
       />
       <Button
         @onClick="handleSumbit"
-        text="Confirm"
+        text="Sign up"
         width="257px"
         height="64px"
+        :isDisabled="isDisabled"
       />
     </v-form>
   </div>
@@ -81,6 +90,7 @@
         width="100%"
         rows="2"
         :value="data.username"
+        :errorMessage="errorMessages.username"
       />
       <ControlField
         @onInputChange="handleFormChange($event, 'phone')"
@@ -89,6 +99,7 @@
         width="100%"
         rows="2"
         :value="data.phone"
+        :errorMessage="errorMessages.phone"
       />
       <ControlField
         @onInputChange="handleFormChange($event, 'email')"
@@ -96,6 +107,7 @@
         label="Email"
         width="100%"
         rows="2"
+        :errorMessage="errorMessages.email"
         :value="data.email"
       />
       <Button
@@ -103,6 +115,7 @@
         text="Confirm"
         width="257px"
         height="64px"
+        :isDisabled="isDisabled"
       />
     </v-form>
   </div>
@@ -115,6 +128,7 @@
         :value="data.password"
         type="PasswordNoLabel"
         :label="'Old Password'"
+        :errorMessage="errorMessages.password"
       />
       <FormField
         @onInputChange="handleFormChange($event, 'newPassword')"
@@ -122,6 +136,7 @@
         :value="data.newPassword"
         type="PasswordNoLabel"
         :label="'New Password'"
+        :errorMessage="errorMessages.newPassword"
       />
       <FormField
         @onInputChange="handleFormChange($event, 'confirmNewPassword')"
@@ -129,12 +144,14 @@
         :value="data.confirmNewPassword"
         type="PasswordNoLabel"
         :label="'Confirm New Password'"
+        :errorMessage="errorMessages.confirmNewPassword"
       />
       <Button
         @onClick="handleSumbit"
         text="Confirm"
         width="257px"
         height="64px"
+        :isDisabled="isDisabled"
       />
     </v-form>
   </div>
@@ -148,6 +165,7 @@
         width="100%"
         rows="2"
         :value="data.dishId"
+        :errorMessage="errorMessages.dishId"
       />
       <ControlField
         @onInputChange="handleFormChange($event, 'dishTitle')"
@@ -156,6 +174,7 @@
         width="100%"
         rows="2"
         :value="data.dishTitle"
+        :errorMessage="errorMessages.dishTitle"
       />
       <ControlField
         @onInputChange="handleFormChange($event, 'dishDescription')"
@@ -164,12 +183,14 @@
         width="100%"
         rows="2"
         :value="data.dishDescription"
+        :errorMessage="errorMessages.dishDescription"
       />
       <Button
         @onClick="handleSumbit"
         text="Confirm"
         width="257px"
         height="64px"
+        :isDisabled="isDisabled"
       />
     </v-form>
   </div>
@@ -183,6 +204,7 @@
         width="100%"
         rows="3"
         :value="data.blogTitle"
+        :errorMessage="errorMessages.blogTitle"
       />
       <ControlField
         @onInputChange="handleFormChange($event, 'blogContent')"
@@ -191,12 +213,14 @@
         width="100%"
         rows="30"
         :value="data.blogContent"
+        :errorMessage="errorMessages.blogContent"
       />
       <Button
         @onClick="handleSumbit"
         text="Confirm"
         width="257px"
         height="64px"
+        :isDisabled="isDisabled"
       />
     </v-form>
   </div>
@@ -209,6 +233,7 @@
         :value="data.fullname"
         type="NoIcon"
         :label="'Your Name'"
+        :errorMessage="errorMessages.fullname"
       />
       <FormField
         @onInputChange="handleFormChange($event, 'email')"
@@ -216,6 +241,7 @@
         :value="data.email"
         type="NoIcon"
         :label="'Your Email'"
+        :errorMessage="errorMessages.email"
       />
       <div style="width: 100%" :style="pairInputStyle">
         <FormField
@@ -223,9 +249,10 @@
           name="phone"
           :value="data.phone"
           type="NoIcon"
-          :label="'Your Phone Number'"
+          :label="'Your Phone Number (10 digits)'"
           :width="'45%'"
           class="justify-space-between"
+          :errorMessage="errorMessages.phone"
         />
         <FormField
           @onInputChange="handleFormChange($event, 'totalPeople')"
@@ -235,6 +262,7 @@
           :label="'Number Of Persons'"
           :width="'45%'"
           class="justify-space-between"
+          :errorMessage="errorMessages.totalPeople"
         />
       </div>
       <div style="width: 100%" :style="pairInputStyle">
@@ -244,7 +272,8 @@
           :value="data.date"
           type="NoIcon"
           :width="'45%'"
-          :label="'Date'"
+          :label="'Date (YYYY-MM-DD)'"
+          :errorMessage="errorMessages.date"
         />
         <FormField
           @onInputChange="handleFormChange($event, 'time')"
@@ -252,7 +281,8 @@
           :value="data.time"
           type="NoIcon"
           :width="'45%'"
-          :label="'Time'"
+          :label="'Time (HH:MM:SS)'"
+          :errorMessage="errorMessages.time"
         />
       </div>
       <FormField
@@ -261,12 +291,15 @@
         :value="data.message"
         type="NoIconMessage"
         :label="'Your Messages'"
+        :errorMessage="errorMessages.message"
       />
       <Button
+        class="btn-wrapper"
         @onClick="handleSumbit"
         text="Book Your Table"
         width="207px"
         height="53px"
+        :isDisabled="isDisabled"
       />
     </v-form>
   </div>
@@ -288,11 +321,13 @@ export default {
       type: String,
       default: "",
     },
+    errorMessages: {
+      type: Object,
+    },
   },
 
   methods: {
     handleFormChange(data, name) {
-      // console.log("Form receive data change: ", data, name);
       this.$emit("onFormChange", {
         name: name,
         value: data,
@@ -300,7 +335,6 @@ export default {
     },
 
     handleSumbit() {
-      console.log("Button Click");
       this.$emit("onSubmit");
     },
   },
@@ -314,7 +348,23 @@ export default {
       },
     };
   },
+
+  computed: {
+    isDisabled() {
+      for (const [key, value] of Object.entries(this.errorMessages)) {
+        console.log(key, value);
+        if (value !== "") {
+          return true;
+        }
+      }
+      return false;
+    },
+  },
 };
 </script>
 
-<style></style>
+<style scoped>
+.btn-wrapper {
+  margin: 10px 0 50px 0;
+}
+</style>
