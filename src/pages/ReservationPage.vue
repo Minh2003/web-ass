@@ -155,7 +155,7 @@ export default {
       console.log(formData);
 
       var settings = {
-        url: "http://localhost/reservation",
+        url: `${process.env.VUE_APP_API_URL}/reservation`,
         method: "post",
         timeout: 0,
         data: {
