@@ -10,11 +10,13 @@
             <Form
               :type="'Register'"
               :data="formData"
+              :errorMessages="errorMessages"
               @onFormChange="handleFormChange"
               @onSubmit="handleSubmit"
             />
           </v-col>
         </v-layout>
+        Hoặc
       </v-col>
     </v-row>
   </v-container>
@@ -23,6 +25,7 @@
 <script>
 import Form from "../components/Form.vue";
 import $ from "jquery";
+import * as yup from "yup";
 // import CustomTitle from "../components/CustomTitle.vue";
 export default {
   components: { Form },
@@ -38,6 +41,23 @@ export default {
         password: "",
         confirmPassword: "",
       },
+      errorMessages: {
+        message: "",
+        username: "",
+        email: "",
+        phone: "",
+        password: "",
+        confirmPassword: "",
+      },
+      schema: yup.object().shape({
+        email: yup
+          .string()
+          .email()
+          .label("Email"),
+        phone: yup
+          .string()
+          .matches(/^[0-9]{10}$/, "Phone number must be 10 digits"),
+      }),
     };
   },
 
@@ -52,7 +72,6 @@ export default {
       let value = JSON.parse(JSON.stringify(this.formData));
       //   username = value.;
       console.log(value);
-      console.log(this.formData.username);
       this.register();
     },
 
@@ -61,7 +80,7 @@ export default {
       console.log(this.formData.email);
       console.log(this.formData.phone);
       console.log(this.formData.password);
-      const __this = this;
+
       var settings = {
         url: "http://localhost/auth/register",
         method: "POST",
@@ -69,7 +88,7 @@ export default {
         data: {
           username: this.formData.username,
           password: this.formData.password,
-          verify_password: this.formData.confirmPassword,
+          verify_password: this.formData.password,
           phoneNumber: this.formData.phone,
           email: this.formData.email,
           avatar: "https://",
@@ -77,11 +96,18 @@ export default {
         headers: {},
       };
 
-      $.ajax(settings).done(function(response) {
+      $.ajax(settings).then(function(response) {
         const a = JSON.parse(response).response;
-        console.log(response);
-        __this.item = a;
-        console.log(this.item);
+        console.log("a: ", a);
+        // console.log(a.token);
+        // console.log(a.user);
+        if (localStorage.getItem("UserToken") != "")
+          localStorage.removeItem("UserToken");
+        if (localStorage.getItem("User") != "") localStorage.removeItem("User");
+        localStorage.setItem("UserToken", a.token);
+        localStorage.setItem("User", JSON.stringify(a.user));
+        const x = localStorage.getItem("User");
+        console.log(JSON.parse(x));
       });
     },
   },
