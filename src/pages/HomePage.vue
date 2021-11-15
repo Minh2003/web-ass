@@ -1,73 +1,109 @@
 <template>
-  <div>
-    home page ne
-    <button @click="test">Click me</button>
-    <ul>
-      <li v-for="i in item" :key="i.id">
-        {{ i.title }}
-      </li>
-    </ul>
-    {{ item }}
+  <div class="background">
+    <div class="home-wrapper">
+      <div class="home-title">
+        <p>Cozy food zone</p>
+      </div>
+      <div class="home-description d-flex justify-center">
+        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
+      </div>
+      <div class="btn-wrapper d-flex justify-center">
+          <Button
+            @onClick="handleBookBtnClick"
+            text="Book Your Table"
+            width="207px"
+            height="53px"
+            to="/reservation"
+          />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// import Comment from "../components/Comment.vue";
-
-import $ from "jquery";
-
+import Button from '../components/Button.vue';
 export default {
-  // components: { Comment },
   name: "HomePage",
-  data() {
-    return {
-      formData: {
-        // Vue Object Data will be convert into Observer
-      },
-      item: [],
-    };
-  },
+  components: {Button},
   methods: {
-    test() {
-      const __this = this;
-      var settings = {
-        url: "http://localhost/auth/login",
-        method: "post",
-        timeout: 0,
-        data: {
-          name: "Assignment",
-          description: "description",
-          image: "https:?/",
-          title: "new title blog",
-          content: "content",
-          // NoP: 12,
-          // date: "2021-12-12",
-          // time: "12:00:01",
-          username: "Minh123456",
-          password: "12345678",
-          phoneNumber: "1234567890",
-          email: "minh1234@example.com",
-          avatar: "https://",
-          // blogId: 2,
-          old_password: "1234567890",
-          new_password: "12345678",
-          verify_password: "12345678",
-        },
-        headers: {
-          // 'Bear-Token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIgdGVzdCIsImlkIjoiMyIsIm1hbmFnZXIiOiIwIiwiZXhwIjoxNjM4Nzg0MDgwfQ.SdI1UcaMYVi0L6d22XTLqdsSq7dN3L7hvGJcA_EQdZE"
-          // Admin
-          "Bear-Token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1pbmgxMjM0NTYiLCJpZCI6IjEiLCJtYW5hZ2VyIjoiMSIsImV4cCI6MTYzOTIxMTI2OX0.r8CwtgUQcMg8TjstE8EhmbZMFOD6jKB6hT4T-WHyc3A",
-        },
-      };
-
-      $.ajax(settings).done(function(response) {
-        console.log(response);
-        const a = JSON.parse(response).response;
-        __this.item = JSON.parse(JSON.stringify(a));
-        console.log(JSON.parse(JSON.stringify(a)));
-      });
+    handleBookBtnClick() {
+      this.$router.push({ name: "makeReservation" });
     },
-  },
-};
+  }
+}
 </script>
+
+<style scoped>
+@media screen and (max-width: 1400px) {
+  .background {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url(https://s3.eu-west-2.amazonaws.com/dc-york/images/_1800x875_crop_center-center_90_none/jay-wennington-N_Y88TWmGwA-unsplash_2021-05-26-084422.jpg);
+    height: 100vh;
+    width: 100vw;
+  }
+  .home-wrapper {
+    margin: 20vh;
+  }
+  .home-title {
+    font-family: Oleo Script Swash Caps;
+    text-align: center;
+    font-size: 600%;
+    margin: 2% 0% -1% 0%;
+    color: white
+  }
+  .home-description {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    margin: 0vh 40vh 2vh 40vh;
+    font-size: 18px;
+    color: white
+  }
+}
+@media screen and (max-width: 800px) {
+  .background {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url(https://s3.eu-west-2.amazonaws.com/dc-york/images/_1800x875_crop_center-center_90_none/jay-wennington-N_Y88TWmGwA-unsplash_2021-05-26-084422.jpg);
+    height: 75vh;
+    width: 100vw;
+  }
+  .home-wrapper {
+    margin: 15vh 10vh;
+  }
+  .home-title {
+    font-family: Oleo Script Swash Caps;
+    text-align: center;
+    font-size: 500%;
+    margin: 0 0 2% 0;
+    color: white
+  }
+  .home-description {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    margin: 0vh 8vh 4vh 8vh;
+    font-size: 16px;
+    color: white
+  }
+}
+@media screen and (max-width: 500px) {
+  .background {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url(https://s3.eu-west-2.amazonaws.com/dc-york/images/_1800x875_crop_center-center_90_none/jay-wennington-N_Y88TWmGwA-unsplash_2021-05-26-084422.jpg);
+    height: 95vh;
+    width: 100vw;
+  }
+  .home-wrapper {
+    margin: 15vh 0;
+  }
+  .home-title {
+    font-family: Oleo Script Swash Caps;
+    text-align: center;
+    font-size: 350%;
+    margin: 0 0 2% 0;
+    color: white
+  }
+  .home-description {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    margin: 0vh 8vh 4vh 8vh;
+    font-size: 16px;
+    color: white
+  }
+}
+</style>

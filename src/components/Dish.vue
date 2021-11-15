@@ -1,11 +1,11 @@
 <template>
-  <v-card class="mx-auto my-12" max-width="258">
+  <v-card class="mx-5 my-10" width="258" height="370">
     <div>
-        <v-img height="208" :src=img />
+        <v-img height="208" :src=dish.image />
     </div>
     <div class="dish-container">
-        <p class="dish-title">{{name}}</p>
-        <p class="dish-description">{{description}}</p>
+        <p class="dish-title">{{dish.name}}</p>
+        <p class="dish-description">{{dish.description}}</p>
     </div>
   </v-card>
 </template>
@@ -14,9 +14,7 @@
 export default {
     name: 'Dish',
     props: {
-        name: String,
-        description: String,
-        img: String,
+        dish: Object,
     }
 }
 </script>
@@ -24,10 +22,10 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
     .dish-container {
-        padding: 3% 7% 5% 7%;
+        padding: 2% 6% 0% 6%;
     }
     .dish-title, .dish-description, .dish-price {
-        margin: 5px 0px;
+        margin: 3px 0px;
     }
     .dish-title {
         font-size: 24px;

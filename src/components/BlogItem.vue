@@ -1,9 +1,9 @@
 <template>
   <v-card :to="'/'" class="mx-auto my-12" max-width="311">
     <div>
-        <v-img height="208" :src=img />
+        <v-img height="208" :src=blog.img />
     </div>
-    <p class="dish-title">{{name}}</p>    
+    <p class="dish-title">{{blog.name}}</p>    
   </v-card>
 </template>
 
@@ -11,8 +11,7 @@
 export default {
     name: 'BlogItem',
     props: {
-        name: String,
-        img: String,
+        blog: Object,
     }
 }
 </script>

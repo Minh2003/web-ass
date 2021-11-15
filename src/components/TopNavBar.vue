@@ -6,13 +6,13 @@
         <v-btn depressed color="black" to="/">
           <span class="linkText">Home</span>
         </v-btn>
-        <v-btn depressed color="black" to="/admin">
+        <v-btn depressed color="black" to="/about">
           <span class="linkText">About</span>
         </v-btn>
         <v-btn depressed color="black" to="/menu">
           <span class="linkText">Menu</span>
         </v-btn>
-        <v-btn depressed color="black" to="/admin">
+        <v-btn depressed color="black" to="/blog">
           <span class="linkText">Blog</span>
         </v-btn>
         <v-btn depressed color="black" to="/reservation">

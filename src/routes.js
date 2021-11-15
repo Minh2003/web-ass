@@ -9,10 +9,12 @@ import EditAccountPage from "./pages/EditAccountPage";
 import Form from "./components/Form";
 import AuthenticatePage from "./pages/AuthenticatePage";
 import RegisterPage from "./pages/RegisterPage";
+import AboutUsPage from "./pages/AboutusPage";
 
 const routes = [
   { path: "/", name: "homePage", component: HomePage },
   { path: "/admin", name: "adminPage", component: AdminPage },
+  { path: "/about", name: "aboutUsPage", component: AboutUsPage },
   { path: "/blog/:id", name: "blogDetail", component: BlogDetailPage },
   { path: "/blog", name: "blog", component: BlogPage },
   { path: "/menu", name: "menu", component: MenuPage },

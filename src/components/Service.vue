@@ -1,11 +1,11 @@
 <template>
-  <v-card class="mx-auto" max-width="374">
+  <v-card class="mx-5 my-10" width="374" elevation="6">
     <div class="service-container">
         <div class="service-icon">
-            <v-icon x-large>{{icon_name}}</v-icon>
+            <v-icon x-large color="#e1651f">{{service[0]}}</v-icon>
         </div>
-        <p class="service-title">{{title}}</p>
-        <p class="service-description">{{description}}</p>
+        <p class="service-title">{{service[1]}}</p>
+        <p class="service-description">{{service[2]}}</p>
     </div>
   </v-card>
 </template>
@@ -14,9 +14,7 @@
 export default {
     name: 'Service',
     props: {
-        icon_name: String,
-        title: String,
-        description: String,
+        service: Array,
     }
 }
 </script>
