@@ -10,6 +10,7 @@
             <Form
               :type="'Login'"
               :data="formData"
+              :errorMessages="errorMessages"
               @onFormChange="handleFormChange"
               @onSubmit="handleSubmit"
             />
@@ -23,6 +24,7 @@
 <script>
 import Form from "../components/Form.vue";
 import $ from "jquery";
+import * as yup from "yup";
 // import CustomTitle from "../components/CustomTitle.vue";
 export default {
   components: { Form },
@@ -36,12 +38,36 @@ export default {
         username: "",
         password: "",
       },
+      errorMessages: {
+        username: "",
+        password: "",
+      },
+      schema: yup.object().shape({
+        email: yup.string().email().label("Email"),
+        phone: yup
+          .string()
+          .matches(/^[0-9]{10}$/, "Phone number must be 10 digits"),
+        date: yup
+          .string()
+          .matches(
+            /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/,
+            "Date must be of YYYY-MM-DD"
+          ),
+        time: yup
+          .string()
+          .matches(
+            /(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)/gm,
+            "Time must be of HH:MM:SS"
+          ),
+        totalPeople: yup.number().min(1).max(30).label("Number of persons"),
+      }),
     };
   },
 
   methods: {
     handleFormChange(newData) {
       this.formData[newData.name] = newData.value;
+      this.handleInputValidation(newData);
     },
 
     handleSubmit() {
@@ -50,6 +76,20 @@ export default {
       //   let value = JSON.parse(JSON.stringify(this.formData));
       //   username = value.;
       this.Login();
+    },
+
+    async handleInputValidation({ name, value }) {
+      let validationResult = await this.schema
+        .validate({ [name]: value })
+        .catch((error) => {
+          return error;
+        });
+      if (validationResult.errors) {
+        console.log(validationResult.errors[0]);
+        this.errorMessages[name] = validationResult.errors[0];
+      } else {
+        this.errorMessages[name] = "";
+      }
     },
 
     Login() {
@@ -61,17 +101,20 @@ export default {
           username: this.formData.username,
           password: this.formData.password,
         },
-        headers: {
-          // 'Bear-Token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIgdGVzdCIsImlkIjoiMyIsIm1hbmFnZXIiOiIwIiwiZXhwIjoxNjM4Nzg0MDgwfQ.SdI1UcaMYVi0L6d22XTLqdsSq7dN3L7hvGJcA_EQdZE"
-          "Bear-Token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1pbmgxMjM0IiwiaWQiOiIxIiwibWFuYWdlciI6IjEiLCJleHAiOjE2Mzg3ODM2OTl9.soqY1yTq7RLTZYaFn9Yul_BeB4FOycmCba6Bl3Dj9jY",
-        },
+        headers: {},
       };
 
       $.ajax(settings).done(function (response) {
         const a = JSON.parse(response).response;
-        console.log(a.token);
+        // console.log(a.token);
+        // console.log(a.user);
+        if (localStorage.getItem("UserToken") != "")
+          localStorage.removeItem("UserToken");
+        if (localStorage.getItem("User") != "") localStorage.removeItem("User");
         localStorage.setItem("UserToken", a.token);
+        localStorage.setItem("User", JSON.stringify(a.user));
+        const x = localStorage.getItem("User");
+        console.log(JSON.parse(x));
       });
     },
   },
