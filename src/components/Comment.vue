@@ -39,7 +39,7 @@
 import $ from "jquery";
 export default {
   name: "comment",
-  props:{
+  props: {
     id: {
       type: String,
       default: "",
@@ -60,7 +60,7 @@ export default {
         data: {
           blogId: this.id,
           description: this.commentData,
-          userId: ""
+          userId: "",
         },
         headers: {},
       };

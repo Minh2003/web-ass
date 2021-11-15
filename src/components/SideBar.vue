@@ -5,7 +5,14 @@
         v-for="([icon, text, link], i) in items"
         :key="i"
         style="[style]"
-        :to="{ name: link }"
+        :to="{ name: link !== 'logout' ? link : null }"
+        @click="
+          () => {
+            if (link === 'logout') {
+              logoutUser();
+            }
+          }
+        "
       >
         <v-list-item-icon>
           <v-icon>{{ icon }}</v-icon>
@@ -33,6 +40,19 @@ export default {
       marginBottom: "30px",
     },
   }),
+  methods: {
+    logoutUser() {
+      console.log("Logout User");
+      if (localStorage.getItem("UserToken") !== "") {
+        localStorage.removeItem("UserToken");
+      }
+      if (localStorage.getItem("User") !== "") {
+        localStorage.removeItem("User");
+      }
+      alert("You are about to logout");
+      this.$router.push("/");
+    },
+  },
 };
 </script>
 
