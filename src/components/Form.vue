@@ -352,8 +352,8 @@ export default {
   computed: {
     isDisabled() {
       for (const [key, value] of Object.entries(this.errorMessages)) {
-        console.log(key, value);
-        if (value !== "") {
+        // console.log(key, value);
+        if (value !== "" && key !== "") {
           return true;
         }
       }

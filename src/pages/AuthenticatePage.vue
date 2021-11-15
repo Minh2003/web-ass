@@ -49,7 +49,10 @@ export default {
         password: "",
       },
       schema: yup.object().shape({
-        email: yup.string().email().label("Email"),
+        email: yup
+          .string()
+          .email()
+          .label("Email"),
         phone: yup
           .string()
           .matches(/^[0-9]{10}$/, "Phone number must be 10 digits"),
@@ -65,7 +68,11 @@ export default {
             /(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)/gm,
             "Time must be of HH:MM:SS"
           ),
-        totalPeople: yup.number().min(1).max(30).label("Number of persons"),
+        totalPeople: yup
+          .number()
+          .min(1)
+          .max(30)
+          .label("Number of persons"),
       }),
     };
   },
@@ -110,7 +117,7 @@ export default {
         headers: {},
       };
 
-      $.ajax(settings).done(function (response) {
+      $.ajax(settings).done(function(response) {
         const a = JSON.parse(response).response;
         // console.log(a.token);
         // console.log(a.user);

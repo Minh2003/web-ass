@@ -55,7 +55,10 @@ export default {
         confirmPassword: "",
       },
       schema: yup.object().shape({
-        email: yup.string().email().label("Email"),
+        email: yup
+          .string()
+          .email()
+          .label("Email"),
         phone: yup
           .string()
           .matches(/^[0-9]{10}$/, "Phone number must be 10 digits"),
@@ -98,8 +101,9 @@ export default {
         headers: {},
       };
 
-      $.ajax(settings).then(function (response) {
+      $.ajax(settings).then(function(response) {
         const a = JSON.parse(response).response;
+        console.log("a: ", a);
         // console.log(a.token);
         // console.log(a.user);
         if (localStorage.getItem("UserToken") != "")
