@@ -16,7 +16,12 @@
             />
           </v-col>
         </v-layout>
-        Hoặc
+        <v-layout align-center justify-center>
+          Hoặc
+          <v-btn text color="#e1651f" to="/auth">
+            <span class="linkText">Đăng nhập</span>
+          </v-btn>
+        </v-layout>
       </v-col>
     </v-row>
   </v-container>
@@ -79,7 +84,7 @@ export default {
       console.log(this.formData.password);
 
       var settings = {
-        url: "http://localhost/auth/register",
+        url: `${process.env.VUE_APP_API_URL}/auth/register`,
         method: "POST",
         timeout: 0,
         data: {
@@ -110,4 +115,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+</style>

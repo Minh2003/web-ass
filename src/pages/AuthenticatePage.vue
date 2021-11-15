@@ -16,6 +16,12 @@
             />
           </v-col>
         </v-layout>
+        <v-layout align-center justify-center>
+          Hoặc
+          <v-btn text color="#e1651f" to="/reg">
+            <span class="linkText">Đăng ký</span>
+          </v-btn>
+        </v-layout>
       </v-col>
     </v-row>
   </v-container>
@@ -71,8 +77,8 @@ export default {
     },
 
     handleSubmit() {
-      console.log(this.formData);
-      console.log("submit ne");
+      //console.log(this.formData);
+      //console.log("submit ne");
       //   let value = JSON.parse(JSON.stringify(this.formData));
       //   username = value.;
       this.Login();
@@ -85,7 +91,7 @@ export default {
           return error;
         });
       if (validationResult.errors) {
-        console.log(validationResult.errors[0]);
+        //console.log(validationResult.errors[0]);
         this.errorMessages[name] = validationResult.errors[0];
       } else {
         this.errorMessages[name] = "";
@@ -94,7 +100,7 @@ export default {
 
     Login() {
       var settings = {
-        url: "http://localhost/auth/login",
+        url: `${process.env.VUE_APP_API_URL}/auth/login`,
         method: "POST",
         timeout: 0,
         data: {

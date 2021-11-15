@@ -20,13 +20,16 @@
               auto-grow
               style="padding = 0"
               placeholder="Say something"
+              v-model="commentData"
             ></v-textarea>
           </v-lazy>
         </v-container>
       </div>
       <v-spacer />
       <div>
-        <v-btn color="#e1651f"> <div class="buttonText">Send</div> </v-btn>
+        <v-btn color="#e1651f" @click="PostComment">
+          <div class="buttonText">Send</div>
+        </v-btn>
       </div>
       <v-spacer />
       <v-spacer />
@@ -39,7 +42,7 @@
 import $ from "jquery";
 export default {
   name: "comment",
-  props:{
+  props: {
     id: {
       type: String,
       default: "",
@@ -48,21 +51,32 @@ export default {
   data() {
     return {
       commentData: "",
+      userToken: localStorage.getItem("UserToken"),
+      userID: JSON.parse(localStorage.getItem("User")).id,
     };
   },
 
   methods: {
+    test() {
+      console.log("hello");
+    },
+
     PostComment() {
+      console.log("comment ne");
+      console.log(this.commentData);
+
       var settings = {
-        url: "http://localhost/comment/create",
+        url: `${process.env.VUE_APP_API_URL}/comment/create`,
         method: "POST",
         timeout: 0,
         data: {
           blogId: this.id,
           description: this.commentData,
-          userId: ""
+          userId: "",
         },
-        headers: {},
+        headers: {
+          "Bear-Token": this.userToken,
+        },
       };
 
       $.ajax(settings).then((response) => {
