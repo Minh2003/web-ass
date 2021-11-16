@@ -18,12 +18,12 @@
         <v-btn depressed color="black" to="/reservation">
           <span class="linkText">Make Reservation</span>
         </v-btn>
-        <v-btn depressed color="black" to="/auth">
+        <v-btn v-show="user === null" depressed color="black" to="/auth">
           <span class="linkText">Sign in</span>
         </v-btn>
 
-        <v-btn depressed color="black" to="/account">
-          <span class="linkText"> MyAcccount</span>
+        <v-btn v-show="user !== null" depressed color="black" to="/account">
+          <span class="linkText"> My Acccount</span>
         </v-btn>
       </div>
     </div>
@@ -33,6 +33,11 @@
 <script>
 export default {
   name: "TopNavBar",
+  data() {
+    return {
+      user: localStorage.getItem("User"),
+    };
+  },
 };
 </script>
 

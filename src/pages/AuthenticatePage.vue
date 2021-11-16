@@ -103,10 +103,13 @@ export default {
         this.errorMessages[name] = "";
       }
     },
+    reloadPage() {
+      window.location.reload();
+      window.location.replace("http://localhost:8080/");
+    },
 
     Login() {
       var __this = this;
-
       var settings = {
         url: `${process.env.VUE_APP_API_URL}/auth/login`,
         method: "POST",
@@ -133,12 +136,18 @@ export default {
             localStorage.removeItem("User");
           localStorage.setItem("UserToken", a.token);
           localStorage.setItem("User", JSON.stringify(a.user));
-          const x = localStorage.getItem("User");
-          console.log(JSON.parse(x));
-          console.log(this);
+          //const x = localStorage.getItem("User");
+          // console.log(JSON.parse(x));
+          // console.log(this);
+          __this.reloadPage();
         }
       });
     },
+  },
+  beforeMount() {
+    if (localStorage.getItem("User") !== null) {
+      window.location.replace("http://localhost:8080/");
+    }
   },
 };
 </script>

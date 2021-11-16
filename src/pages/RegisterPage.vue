@@ -74,6 +74,10 @@ export default {
     handleFormChange(newData) {
       this.formData[newData.name] = newData.value;
     },
+    reloadPage() {
+      window.location.reload();
+      window.location.replace("http://localhost:8080/");
+    },
 
     handleSubmit() {
       console.log(this.formData);
@@ -119,9 +123,15 @@ export default {
           localStorage.setItem("User", JSON.stringify(a.user));
           const x = localStorage.getItem("User");
           console.log(JSON.parse(x));
+          __this.reloadPage();
         }
       });
     },
+  },
+  beforeMount() {
+    if (localStorage.getItem("User") !== null) {
+      window.location.replace("http://localhost:8080/");
+    }
   },
 };
 </script>

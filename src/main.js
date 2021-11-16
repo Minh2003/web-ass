@@ -16,9 +16,11 @@ const store = new Vuex.Store(storeConfig)
 const router = new VueRouter({ routes, mode: 'history' })
 
 
-new Vue({
+let app = new Vue({
   store,
   router,
   vuetify,
   render: h => h(App),
 }).$mount('#app')
+
+global.vm = app;
