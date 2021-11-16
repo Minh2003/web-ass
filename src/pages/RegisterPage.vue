@@ -22,6 +22,10 @@
             <span class="linkText">Đăng nhập</span>
           </v-btn>
         </v-layout>
+        <div v-show="this.isFail" class="reservation-note">
+          <div ref="noteTitle" class="note-title"></div>
+          <ReservationNote :notes="{}" />
+        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -31,14 +35,17 @@
 import Form from "../components/Form.vue";
 import $ from "jquery";
 import * as yup from "yup";
+import ReservationNote from "../components/ReservationNote.vue";
+
 // import CustomTitle from "../components/CustomTitle.vue";
 export default {
-  components: { Form },
+  components: { Form, ReservationNote },
 
   Formname: "regPage",
 
   data() {
     return {
+      isFail: false,
       formData: {
         username: "",
         email: "",
@@ -55,10 +62,7 @@ export default {
         confirmPassword: "",
       },
       schema: yup.object().shape({
-        email: yup
-          .string()
-          .email()
-          .label("Email"),
+        email: yup.string().email().label("Email"),
         phone: yup
           .string()
           .matches(/^[0-9]{10}$/, "Phone number must be 10 digits"),
@@ -81,10 +85,7 @@ export default {
     },
 
     register() {
-      console.log(this.formData.username);
-      console.log(this.formData.email);
-      console.log(this.formData.phone);
-      console.log(this.formData.password);
+      var __this = this;
 
       var settings = {
         url: `${process.env.VUE_APP_API_URL}/auth/register`,
@@ -93,7 +94,7 @@ export default {
         data: {
           username: this.formData.username,
           password: this.formData.password,
-          verify_password: this.formData.password,
+          verify_password: this.formData.confirmPassword,
           phoneNumber: this.formData.phone,
           email: this.formData.email,
           avatar: "https://",
@@ -101,18 +102,24 @@ export default {
         headers: {},
       };
 
-      $.ajax(settings).then(function(response) {
-        const a = JSON.parse(response).response;
-        console.log("a: ", a);
-        // console.log(a.token);
-        // console.log(a.user);
-        if (localStorage.getItem("UserToken") != "")
-          localStorage.removeItem("UserToken");
-        if (localStorage.getItem("User") != "") localStorage.removeItem("User");
-        localStorage.setItem("UserToken", a.token);
-        localStorage.setItem("User", JSON.stringify(a.user));
-        const x = localStorage.getItem("User");
-        console.log(JSON.parse(x));
+      $.ajax(settings).then(function (response) {
+        if (JSON.parse(response).status != 200) {
+          __this.isFail = true;
+          __this.$refs.noteTitle.innerHTML = JSON.parse(response).message;
+        } else {
+          const a = JSON.parse(response).response;
+          console.log("a: ", a);
+          // console.log(a.token);
+          // console.log(a.user);
+          if (localStorage.getItem("UserToken") != "")
+            localStorage.removeItem("UserToken");
+          if (localStorage.getItem("User") != "")
+            localStorage.removeItem("User");
+          localStorage.setItem("UserToken", a.token);
+          localStorage.setItem("User", JSON.stringify(a.user));
+          const x = localStorage.getItem("User");
+          console.log(JSON.parse(x));
+        }
       });
     },
   },
@@ -120,4 +127,25 @@ export default {
 </script>
 
 <style scoped>
+.reservation-note {
+  margin: 20px auto;
+  width: 100%;
+  border-radius: 20px;
+  background-color: #ededed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.reservation-note > * {
+  width: 100%;
+}
+
+.note-title {
+  font-family: Oleo Script Swash Caps;
+  text-align: center;
+  font-size: 200%;
+  margin: 20px 0 20px 0;
+}
 </style>

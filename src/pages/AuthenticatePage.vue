@@ -22,6 +22,10 @@
             <span class="linkText">Đăng ký</span>
           </v-btn>
         </v-layout>
+        <div v-show="this.isFail" class="reservation-note">
+          <div ref="noteTitle" class="note-title"></div>
+          <ReservationNote :notes="{}" />
+        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -32,13 +36,15 @@ import Form from "../components/Form.vue";
 import $ from "jquery";
 import * as yup from "yup";
 // import CustomTitle from "../components/CustomTitle.vue";
+import ReservationNote from "../components/ReservationNote.vue";
 export default {
-  components: { Form },
+  components: { Form, ReservationNote },
 
   Formname: "authPage",
 
   data() {
     return {
+      isFail: false,
       token: "",
       formData: {
         username: "",
@@ -49,10 +55,7 @@ export default {
         password: "",
       },
       schema: yup.object().shape({
-        email: yup
-          .string()
-          .email()
-          .label("Email"),
+        email: yup.string().email().label("Email"),
         phone: yup
           .string()
           .matches(/^[0-9]{10}$/, "Phone number must be 10 digits"),
@@ -68,11 +71,7 @@ export default {
             /(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)/gm,
             "Time must be of HH:MM:SS"
           ),
-        totalPeople: yup
-          .number()
-          .min(1)
-          .max(30)
-          .label("Number of persons"),
+        totalPeople: yup.number().min(1).max(30).label("Number of persons"),
       }),
     };
   },
@@ -106,6 +105,8 @@ export default {
     },
 
     Login() {
+      var __this = this;
+
       var settings = {
         url: `${process.env.VUE_APP_API_URL}/auth/login`,
         method: "POST",
@@ -117,21 +118,51 @@ export default {
         headers: {},
       };
 
-      $.ajax(settings).done(function(response) {
-        const a = JSON.parse(response).response;
+      $.ajax(settings).done(function (response) {
         // console.log(a.token);
         // console.log(a.user);
-        if (localStorage.getItem("UserToken") != "")
-          localStorage.removeItem("UserToken");
-        if (localStorage.getItem("User") != "") localStorage.removeItem("User");
-        localStorage.setItem("UserToken", a.token);
-        localStorage.setItem("User", JSON.stringify(a.user));
-        const x = localStorage.getItem("User");
-        console.log(JSON.parse(x));
+        if (JSON.parse(response).status != 200) {
+          __this.isFail = true;
+          __this.$refs.noteTitle.innerHTML = JSON.parse(response).message;
+        } else {
+          const a = JSON.parse(response).response;
+
+          if (localStorage.getItem("UserToken") != "")
+            localStorage.removeItem("UserToken");
+          if (localStorage.getItem("User") != "")
+            localStorage.removeItem("User");
+          localStorage.setItem("UserToken", a.token);
+          localStorage.setItem("User", JSON.stringify(a.user));
+          const x = localStorage.getItem("User");
+          console.log(JSON.parse(x));
+          console.log(this);
+        }
       });
     },
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+.reservation-note {
+  margin: 20px auto;
+  width: 100%;
+  border-radius: 20px;
+  background-color: #ededed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.reservation-note > * {
+  width: 100%;
+}
+
+.note-title {
+  font-family: Oleo Script Swash Caps;
+  text-align: center;
+  font-size: 200%;
+  margin: 20px 0 20px 0;
+}
+</style>
