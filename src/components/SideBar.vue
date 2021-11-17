@@ -9,7 +9,7 @@
         @click="
           () => {
             if (link === 'logout') {
-              logoutUser();
+              logoutEvent();
             }
           }
         "
@@ -51,6 +51,10 @@ export default {
       }
       alert("You are about to logout");
       this.$router.push("/");
+    },
+
+    logoutEvent() {
+      this.$emit("logoutEvent");
     },
   },
 };

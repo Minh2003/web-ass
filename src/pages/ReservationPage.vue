@@ -119,7 +119,6 @@ export default {
 
     handleFormChange(newData) {
       this.formData[newData.name] = newData.value;
-      console.log("Form Changed");
       this.handleInputValidation(newData);
     },
 

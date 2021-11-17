@@ -1,17 +1,43 @@
 <template>
   <div class="edit-account-page-wrapper">
-    <ModalConfirm :isOpen="true" :title="'Hello'" :content="'OK'" />
-    <SideBar />
+    <ModalConfirm
+      @toggleModalEvent="toggleModalOpen('logout')"
+      :isOpen="this.isLogoutModalOpen"
+      :title="'Logout Confirm'"
+      :content="'You are about to logout ?'"
+      @callbackEvent="logoutUser"
+    />
+    <ModalConfirm
+      @toggleModalEvent="toggleModalOpen('profile')"
+      :isOpen="this.isEditProfileModalOpen"
+      :title="'Edit Profile Confirm'"
+      :content="'You are about to edit your profile'"
+      @callbackEvent="handleSubmit"
+    />
+    <ModalConfirm
+      @toggleModalEvent="toggleModalOpen('password')"
+      :isOpen="this.isEditPasswordModalOpen"
+      :title="'Edit Password Confirm'"
+      :content="
+        'You are about to edit your password, please relogin if success'
+      "
+      @callbackEvent="handleSubmit"
+    />
+    <SideBar @logoutEvent="toggleModalOpen('logout')" />
     <div class="update-form-wrapper">
       <div style="width: 80%; margin: auto;">
         <router-view
           :key="$route.path"
           :data="formData"
           @onFormChange="handleFormChange"
-          @onSubmit="handleSubmit"
+          @onSubmit="
+            $route.name === 'editAccountProfile'
+              ? toggleModalOpen('profile')
+              : toggleModalOpen('password')
+          "
           :errorMessages="errorMessages"
         />
-        <div class="reservation-note" ref="note">
+        <div v-show="isSuccess" class="reservation-note" ref="note">
           <div ref="noteTitle" class="note-title"></div>
           <ReservationNote :notes="this.notes" :isSuccess="isSuccess" />
         </div>
@@ -43,6 +69,9 @@ export default {
         "New Email": "",
         "New Phone Number": "",
       },
+      isLogoutModalOpen: false,
+      isEditProfileModalOpen: false,
+      isEditPasswordModalOpen: false,
       formType: {
         type: String,
         default: "",
@@ -114,8 +143,17 @@ export default {
 
     handleFormChange(newData) {
       this.formData[newData.name] = newData.value;
-      console.log("Form Changed");
       this.handleInputValidation(newData);
+    },
+
+    toggleModalOpen(type) {
+      if (type === "logout") {
+        this.isLogoutModalOpen = !this.isLogoutModalOpen;
+      } else if (type === "profile") {
+        this.isEditProfileModalOpen = !this.isEditProfileModalOpen;
+      } else if (type === "password") {
+        this.isEditPasswordModalOpen = !this.isEditPasswordModalOpen;
+      }
     },
 
     editNotes(response) {
@@ -138,7 +176,6 @@ export default {
       if (localStorage.getItem("User") !== "") {
         localStorage.removeItem("User");
       }
-      alert("You are about to logout");
       this.$router.push("/");
     },
 
@@ -161,7 +198,7 @@ export default {
         /**
          * Handle Edit Profile
          */
-        console.log("Submit edit profile");
+        this.toggleModalOpen("profile");
         let settings = {
           url: "http://localhost/auth/update_profile",
           method: "post",
@@ -193,7 +230,7 @@ export default {
         /**
          * Handle Edit Password
          */
-        console.log("Submit to edit password");
+        this.toggleModalOpen("password");
         let settings = {
           url: "http://localhost/auth/update_password",
           method: "post",

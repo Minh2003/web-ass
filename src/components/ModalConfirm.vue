@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-dialog v-model="dialog" width="500">
+    <v-dialog v-model="isOpen" width="500">
       <v-card>
         <v-card-title>
           <h2>
@@ -16,8 +16,10 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn depressed color="gray" @click="dialog = false"> Cancel </v-btn>
-          <v-btn color="#E1651F" @click="dialog = false">
+          <v-btn depressed color="gray" @click="toggleModalOpen(false)">
+            Cancel
+          </v-btn>
+          <v-btn color="#E1651F" @click="toggleModalOpen(true)">
             <span class="white--text">Confirm</span>
           </v-btn>
         </v-card-actions>
@@ -28,12 +30,26 @@
 
 <script>
 export default {
-  data() {
-    return {
-      dialog: this.isOpen,
-    };
+  props: {
+    title: {
+      type: String,
+    },
+    content: {
+      type: String,
+    },
+    isOpen: {
+      type: Boolean,
+    },
   },
-  props: ["title", "content", "isOpen"],
+  methods: {
+    toggleModalOpen(isConfirm) {
+      if (isConfirm) {
+        this.$emit("callbackEvent");
+      } else {
+        this.$emit("toggleModalEvent");
+      }
+    },
+  },
 };
 </script>
 

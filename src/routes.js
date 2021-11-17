@@ -10,6 +10,7 @@ import Form from "./components/Form";
 import AuthenticatePage from "./pages/AuthenticatePage";
 import RegisterPage from "./pages/RegisterPage";
 import AboutUsPage from "./pages/AboutusPage";
+import EditBlogPage from "./pages/EditBlogPage";
 
 const routes = [
   { path: "/", name: "homePage", component: HomePage },
@@ -44,6 +45,16 @@ const routes = [
         },
       },
     ],
+  },
+  {
+    path: "/admin/blog/create",
+    name: "adminCreateBlog",
+    component: EditBlogPage,
+  },
+  {
+    path: "/admin/blog/:id/edit",
+    name: "adminEditBlog",
+    component: EditBlogPage,
   },
 ];
 
