@@ -6,7 +6,7 @@
       <v-spacer />
       <div>
         <v-avatar size="70">
-          <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+          <img :src="this.user.avatar" :alt="this.user.username" />
         </v-avatar>
       </div>
       <v-spacer />
@@ -53,6 +53,7 @@ export default {
       commentData: "",
       userToken: localStorage.getItem("UserToken"),
       userID: JSON.parse(localStorage.getItem("User")).id,
+      user: JSON.parse(localStorage.getItem("User")),
     };
   },
 
@@ -60,10 +61,15 @@ export default {
     test() {
       console.log("hello");
     },
+    reloadPage() {
+      window.location.reload();
+      window.location.replace(`http://localhost:8080/blog/${this.id}`);
+    },
 
     PostComment() {
       console.log("comment ne");
       console.log(this.commentData);
+      const __this = this;
 
       var settings = {
         url: `${process.env.VUE_APP_API_URL}/comment/create`,
@@ -85,6 +91,7 @@ export default {
         const a = JSON.parse(response).response;
         this.item = a;
         console.log(this.item);
+        __this.reloadPage();
       });
     },
   },

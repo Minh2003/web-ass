@@ -1,8 +1,17 @@
 <template>
   <div v-if="!isLoading" id="blog-detail">
     <v-container>
-      <v-layout align-center justify-center>
+      <v-layout align-center justify-space-around>
         <h1>{{ item.blog.title }}</h1>
+        <v-btn
+          v-show="manager == '1'"
+          @click="this.deletePost"
+          width="7vw"
+          height="2.5vw"
+          color="#e1651f"
+        >
+          <span class="linkText">Delete</span>
+        </v-btn>
       </v-layout>
       <v-layout align-center justify-center>
         <v-img
@@ -20,8 +29,8 @@
     </div>
 
     <div class="reply">
-      <h2>Reply</h2>
-      <comment :id="item.blog.id" />
+      <h2 v-if="user !== null">Reply</h2>
+      <comment v-if="user !== null" :id="item.blog.id" />
       <div v-for="comment in comments" :key="comment.id">
         <comment-list-item :comment="comment" />
       </div>
@@ -38,6 +47,12 @@ export default {
   components: { Paragraph, Comment, CommentListItem },
   name: "blogDetail",
   data() {
+    var managerValue = "0";
+    var userValue = null;
+    if (localStorage.getItem("User") != null) {
+      managerValue = JSON.parse(localStorage.getItem("User")).manager;
+      userValue = localStorage.getItem("User");
+    }
     return {
       isLoading: false,
       formData: {
@@ -46,10 +61,44 @@ export default {
       item: [],
       comments: [],
       numBlog: this.$route.params.id,
+      manager: managerValue,
+      user: userValue,
     };
   },
 
   methods: {
+    reloadPage() {
+      window.location.reload();
+      window.location.replace("http://localhost:8080/blog");
+    },
+
+    deletePost() {
+      const token = localStorage.getItem("UserToken");
+      var __this = this;
+
+      var settings = {
+        url: `${process.env.VUE_APP_API_URL}/admin/delete_blog/{${this.numBlog}}`,
+        method: "POST",
+        timeout: 0,
+        data: {},
+        headers: {
+          "Bear-Token": token,
+        },
+      };
+
+      $.ajax(settings).then((response) => {
+        // this.isLoading = false;
+        console.log(response);
+        __this.reloadPage();
+
+        // const a = JSON.parse(response).response;
+        // this.item = a;
+        // //console.log(this.item);
+        // this.comments = this.item.comments;
+        //console.log(this.comments);
+      });
+    },
+
     GetBlogData() {
       var settings = {
         url: `${process.env.VUE_APP_API_URL}/blog/{${this.numBlog}}`,
@@ -84,5 +133,13 @@ export default {
 }
 .reply {
   padding: 0vw 5vw 5vw 5vw;
+}
+
+.linkText {
+  color: white;
+  font-size: 1vw;
+}
+.title {
+  min-height: 70px;
 }
 </style>

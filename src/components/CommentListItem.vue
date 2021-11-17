@@ -29,7 +29,7 @@
       <v-spacer />
       <div>
         <v-btn
-          v-show="user.id == comment.user_id || user.manager == 1"
+          v-show="user.id == comment.user_id || this.manager == 1"
           color="#e1651f"
           @click="DeleteComment"
         >
@@ -48,16 +48,36 @@ import $ from "jquery";
 export default {
   name: "commentListItem",
   data() {
+    var managerValue = "0";
+    var userValue = null;
+    if (localStorage.getItem("User") != null) {
+      managerValue = JSON.parse(localStorage.getItem("User")).manager;
+      userValue = localStorage.getItem("User");
+    }
+
     return {
-      user: JSON.parse(localStorage.getItem("User")),
+      user: userValue,
+      manager: managerValue,
     };
+
+    // return {
+    //   user: JSON.parse(localStorage.getItem("User")),
+    // };
   },
   props: {
     comment: Object,
   },
   methods: {
+    reloadPage() {
+      window.location.reload();
+      window.location.replace(
+        `http://localhost:8080/blog/${this.$props.comment.blog_id}`
+      );
+    },
+
     DeleteComment() {
       const token = localStorage.getItem("UserToken");
+      const __this = this;
       console.log(token);
       var settings = {
         url: `${process.env.VUE_APP_API_URL}/comment/delete/{${this.$props.comment.id}}`,
@@ -74,6 +94,7 @@ export default {
       $.ajax(settings).done(function (response) {
         const a = JSON.parse(response);
         console.log(a);
+        __this.reloadPage();
         // console.log(a.token);
         // console.log(a.user);
         // if (localStorage.getItem("UserToken") != "")
