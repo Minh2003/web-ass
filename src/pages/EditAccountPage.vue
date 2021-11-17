@@ -200,7 +200,7 @@ export default {
          */
         this.toggleModalOpen("profile");
         let settings = {
-          url: "http://localhost/auth/update_profile",
+          url: `${process.env.VUE_APP_API_URL}/auth/update_profile`,
           method: "post",
           timeout: 0,
           data: {
@@ -232,7 +232,7 @@ export default {
          */
         this.toggleModalOpen("password");
         let settings = {
-          url: "http://localhost/auth/update_password",
+          url: `${process.env.VUE_APP_API_URL}/auth/update_password`,
           method: "post",
           timeout: 0,
           data: {
