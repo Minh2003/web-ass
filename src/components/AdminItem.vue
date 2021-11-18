@@ -23,14 +23,6 @@
         <v-col :cols="layout.slice(-2)[0]">
           <Button
             :style="[element]"
-            text="Edit"
-            :width="'96px'"
-            :height="'27px'"
-          />
-        </v-col>
-        <v-col :cols="layout.slice(-2)[0]">
-          <Button
-            :style="[element]"
             text="Delete"
             :width="'96px'"
             :height="'27px'"
@@ -46,34 +38,38 @@
       :style="[style]"
     >
       <v-row align="center" justify="center">
-        <v-col :style="[element, primary]" :cols="layout[0]">
+        <v-col :style="[element, primary]">
           {{ items[0] }}
         </v-col>
-        <v-col :style="[element, primary]" :cols="layout[1]">
+        <v-col :style="[element, primary]">
           {{ items[1] }}
         </v-col>
-        <v-col :style="[element, secondary]" :cols="layout[2]">
+        <v-col :style="[element, secondary]">
           <img :style="[dishImage]" :src="items[2]" :alt="items[2]" />
         </v-col>
-        <v-col :style="[element, secondary]" :cols="layout[3]">
-          {{ items[3].slice(0, 40) + "..." }}
+        <v-col :style="[element, secondary]">
+          {{ items[3].slice(0, 60) + "..." }}
         </v-col>
-        <v-col :cols="layout.slice(-2)[0]">
-          <Button
-            :style="[element]"
-            text="Edit"
-            :width="'90px'"
-            :height="'27px'"
-          />
-        </v-col>
-        <v-col :cols="layout.slice(-2)[0]">
-          <Button
-            :style="[element]"
-            text="Delete"
-            :width="'90px'"
-            :height="'27px'"
-          />
-        </v-col>
+        <div>
+          <v-col>
+            <Button
+              :style="[element]"
+              text="Edit"
+              :width="'90px'"
+              :height="'27px'"
+            />
+          </v-col>
+        </div>
+        <div>
+          <v-col>
+            <Button
+              :style="[element]"
+              text="Delete"
+              :width="'90px'"
+              :height="'27px'"
+            />
+          </v-col>
+        </div>
       </v-row>
     </v-container>
   </div>
@@ -120,15 +116,18 @@ export default {
         lineHeight: "160%",
         textDecorationLine: "underline",
         color: "#6a6a6a",
+        padding: '0 30px'
       },
       dishImage: {
         width: this.imgSize,
         height: this.imgSize,
         borderRadius: "10px",
+        margin: '0 20px'
       },
     };
   },
 };
 </script>
 
-<style></style>
+<style>
+</style>

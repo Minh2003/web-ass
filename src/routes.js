@@ -11,6 +11,8 @@ import AuthenticatePage from "./pages/AuthenticatePage";
 import RegisterPage from "./pages/RegisterPage";
 import AboutUsPage from "./pages/AboutusPage";
 import EditBlogPage from "./pages/EditBlogPage";
+import AdminMenu from "./pages/AdminMenu";
+import AdminUser from "./pages/AdminUser";
 
 const routes = [
   { path: "/", name: "homePage", component: HomePage },
@@ -55,6 +57,16 @@ const routes = [
     path: "/admin/blog/:id/edit",
     name: "adminEditBlog",
     component: EditBlogPage,
+  },
+  {
+    path: "/admin/menu",
+    name: "adminMenu",
+    component: AdminMenu,
+  },
+  {
+    path: "/admin/user",
+    name: "adminUser",
+    component: AdminUser,
   },
 ];
 
