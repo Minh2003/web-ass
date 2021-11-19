@@ -3,9 +3,7 @@
     <v-app>
       <top-nav-bar />
       <admin-nav-bar />
-
       <router-view />
-
       <div class="custom_footer">
         <Footer />
       </div>
@@ -34,6 +32,6 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap");
 
 .custom_footer {
-  margin-top: auto;
+  /* margin-top: auto; */
 }
 </style>
