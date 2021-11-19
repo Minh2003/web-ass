@@ -68,7 +68,7 @@ const routes = [
     path: "/admin/dish/:id/edit",
     name: "adminEditDish",
     component: EditDishPage,
-  }
+  },
   {
     path: "/admin/menu",
     name: "adminMenu",
