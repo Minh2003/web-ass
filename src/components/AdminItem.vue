@@ -8,24 +8,25 @@
       :style="[style]"
     >
       <v-row align="center" justify="center">
-        <v-col :style="[element, primary]" :cols="layout[0]">
+        <v-col :style="[element, primary]">
           {{ items[0] }}
         </v-col>
-        <v-col :style="[element, primary]" :cols="layout[1]">
+        <v-col :style="[element, primary]">
           {{ items[1] }}
         </v-col>
-        <v-col :style="[element, secondary]" :cols="layout[2]">
+        <v-col :style="[element, secondary]">
           {{ items[2] }}
         </v-col>
-        <v-col :style="[element, secondary]" :cols="layout[3]">
+        <v-col :style="[element, secondary]">
           {{ items[3] }}
         </v-col>
-        <v-col :cols="layout.slice(-2)[0]">
+        <v-col>
           <Button
             :style="[element]"
             text="Delete"
             :width="'96px'"
             :height="'27px'"
+            @onClick="handleSubmit"
           />
         </v-col>
       </v-row>
@@ -67,6 +68,7 @@
               text="Delete"
               :width="'90px'"
               :height="'27px'"
+              @onClick="handleSubmit"
             />
           </v-col>
         </div>
@@ -84,10 +86,14 @@ export default {
   props: {
     width: String,
     height: String,
-    layout: Array,
     items: Array,
     type: String,
     imgSize: String,
+  },
+  methods: {
+    handleSubmit() {
+      this.$emit("onSubmit");
+    },
   },
   data() {
     return {

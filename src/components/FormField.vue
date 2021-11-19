@@ -1,6 +1,8 @@
 <template>
   <div v-if="this.type === 'UsernameIcon'" :style="[this.style]">
     <v-text-field
+      background-color="white"
+      solo
       outlined
       :error-messages="errorMessage"
       :value="value"
@@ -20,6 +22,8 @@
 
   <div v-else-if="this.type === 'PasswordIcon'" :style="[this.style]">
     <v-text-field
+      background-color="white"
+      solo
       type="password"
       outlined
       :error-messages="errorMessage"
@@ -40,6 +44,8 @@
   <div v-else-if="this.type === 'EmailIcon'" :style="[this.style]">
     <v-text-field
       outlined
+      background-color="white"
+      solo
       :error-messages="errorMessage"
       :value="value"
       :placeholder="placeHolder"
@@ -57,6 +63,8 @@
 
   <div v-else-if="this.type === 'PhoneIcon'" :style="[this.style]">
     <v-text-field
+      background-color="white"
+      solo
       outlined
       :error-messages="errorMessage"
       :value="value"
@@ -76,6 +84,8 @@
   <div v-else-if="this.type === 'PasswordNoLabel'" :style="[this.style]">
     <div :style="[styleLabel, styleLabelDish]">{{ label }}</div>
     <v-text-field
+      background-color="white"
+      solo
       :error-messages="errorMessage"
       :value="value"
       outlined
@@ -94,6 +104,8 @@
 
   <div v-else-if="this.type === 'NoIcon'" :style="[this.style]">
     <v-text-field
+      background-color="white"
+      solo
       class="reservation-input"
       :error-messages="errorMessage"
       :value="value"
@@ -112,6 +124,8 @@
 
   <div v-else-if="this.type === 'NoIconMessage'" :style="[this.style]">
     <v-textarea
+      background-color="white"
+      solo
       class="reservation-input"
       :error-messages="errorMessage"
       :value="value"
