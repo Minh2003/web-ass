@@ -37,7 +37,31 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (max-width: 1400px) {
+.background {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
+    url(https://s3.eu-west-2.amazonaws.com/dc-york/images/_1800x875_crop_center-center_90_none/jay-wennington-N_Y88TWmGwA-unsplash_2021-05-26-084422.jpg);
+  background-size: cover;
+  height: 75vh;
+}
+.home-wrapper {
+  margin: 20vh;
+}
+.home-title {
+  font-family: Oleo Script Swash Caps;
+  text-align: center;
+  font-size: 600%;
+  margin: 2% 0% -1% 0%;
+  color: white;
+}
+.home-description {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-align: center;
+  margin: 0vh 40vh 2vh 40vh;
+  font-size: 18px;
+  color: white;
+  }
+@media screen and (max-width: 1450px) {
   .background {
     background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
       url(https://s3.eu-west-2.amazonaws.com/dc-york/images/_1800x875_crop_center-center_90_none/jay-wennington-N_Y88TWmGwA-unsplash_2021-05-26-084422.jpg);

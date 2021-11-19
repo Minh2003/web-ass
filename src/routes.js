@@ -12,6 +12,8 @@ import RegisterPage from "./pages/RegisterPage";
 import AboutUsPage from "./pages/AboutusPage";
 import EditBlogPage from "./pages/EditBlogPage";
 import EditDishPage from "./pages/EditDishPage";
+import AdminMenu from "./pages/AdminMenu";
+import AdminUser from "./pages/AdminUser";
 
 const routes = [
   { path: "/", name: "homePage", component: HomePage },
@@ -66,6 +68,16 @@ const routes = [
     path: "/admin/dish/:id/edit",
     name: "adminEditDish",
     component: EditDishPage,
+  }
+  {
+    path: "/admin/menu",
+    name: "adminMenu",
+    component: AdminMenu,
+  },
+  {
+    path: "/admin/user",
+    name: "adminUser",
+    component: AdminUser,
   },
 ];
 

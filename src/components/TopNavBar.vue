@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container v-show="manager != '1'" fluid>
     <div class="d-flex">
       <div class="mr-auto">Logo</div>
       <div class="NavBar">
@@ -34,8 +34,16 @@
 export default {
   name: "TopNavBar",
   data() {
+    var managerValue = "0";
+    var userValue = null;
+    if (localStorage.getItem("User") !== null) {
+      managerValue = JSON.parse(localStorage.getItem("User")).manager;
+      userValue = localStorage.getItem("User");
+    }
+
     return {
-      user: localStorage.getItem("User"),
+      user: userValue,
+      manager: managerValue,
     };
   },
 };

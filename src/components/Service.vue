@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-5 my-10" width="374" elevation="6">
+  <v-card class="service-card" width="374" elevation="6">
     <div class="service-container">
         <div class="service-icon">
             <v-icon x-large color="#e1651f">{{service[0]}}</v-icon>
@@ -21,6 +21,9 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
+    .service-card {
+        margin: 30px 60px;
+    }
     .service-container {
         padding: 2% 4%;
     }
@@ -34,4 +37,22 @@ export default {
         font-size: 24px;
         font-family: Oleo Script Swash Caps;
     }
+@media screen and (max-width: 1450px) {
+    .service-card {
+        margin: 30px 30px;
+    }
+    .service-container {
+        padding: 2% 4%;
+    }
+    .service-icon {
+        padding: 5% 45%;
+    }
+    .service-description, .service-title {
+        text-align: center;
+    }
+    .service-title {
+        font-size: 24px;
+        font-family: Oleo Script Swash Caps;
+    }
+}
 </style>

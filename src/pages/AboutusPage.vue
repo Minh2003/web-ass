@@ -22,7 +22,7 @@
                         text="Explore More"
                         width="148px"
                         height="53px"
-                        to="/blog"
+                        to="/menu"
                     />
                 </div>
             </div>
@@ -61,13 +61,34 @@ export default {
     }),
     methods: {
         handleExploreBtnClick() {
-            this.$router.push({ name: "blog" });
+            this.$router.push({ name: "menu" });
         },
     }
 }
 </script>
 
 <style scoped>
+    .text-wrapper {
+        width: 35%;
+        margin: 5% 2% 5% 7%;
+    }
+    .about-title, .question-title {
+        font-family: Oleo Script Swash Caps;
+        font-size: 300%;
+        margin: 0% 0% 5% 0%;
+    }
+    .about-description {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        margin-bottom: 8%;
+    }
+    .question-title {
+        text-align: center;
+        margin: 0% 0% 0% 0%;
+    }
+    .question-description {
+        text-align: center;
+        margin: 0vh 55vh 2vh 55vh;
+    }
 @media screen and (max-width: 1400px) {
     .text-wrapper {
         width: 35%;

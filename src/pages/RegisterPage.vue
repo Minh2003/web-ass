@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="background">
     <v-row>
       <v-col>
         <v-layout align-center justify-center> Logo bên đây nè </v-layout>
@@ -137,6 +137,12 @@ export default {
 </script>
 
 <style scoped>
+.background {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
+    url(https://s3.eu-west-2.amazonaws.com/dc-york/images/_1800x875_crop_center-center_90_none/jay-wennington-N_Y88TWmGwA-unsplash_2021-05-26-084422.jpg);
+  background-size: cover;
+  height: 75vh;
+}
 .reservation-note {
   margin: 20px auto;
   width: 100%;

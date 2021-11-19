@@ -88,7 +88,7 @@ export default {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   text-align: center;
-  margin: 0% 0% -1% 0%;
+  margin: 0% 8% -1% 8%;
 }
 .btn-wrapper {
   margin: 25px 0 65px 0;
