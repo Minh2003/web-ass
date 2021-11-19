@@ -11,6 +11,7 @@ import AuthenticatePage from "./pages/AuthenticatePage";
 import RegisterPage from "./pages/RegisterPage";
 import AboutUsPage from "./pages/AboutusPage";
 import EditBlogPage from "./pages/EditBlogPage";
+import EditDishPage from "./pages/EditDishPage";
 import AdminMenu from "./pages/AdminMenu";
 import AdminUser from "./pages/AdminUser";
 
@@ -58,6 +59,16 @@ const routes = [
     name: "adminEditBlog",
     component: EditBlogPage,
   },
+  {
+    path: "/admin/dish/create",
+    name: "adminCreateDish",
+    component: EditDishPage,
+  },
+  // {
+  //   path: "/admin/dish/:id/edit",
+  //   name: "adminEditDish",
+  //   component: EditDishPage,
+  // },
   {
     path: "/admin/menu",
     name: "adminMenu",

@@ -177,6 +177,15 @@
         :errorMessage="errorMessages.dishTitle"
       />
       <ControlField
+        @onInputChange="handleFormChange($event, 'imageUrl')"
+        type="BlogContent"
+        label="Image Link"
+        width="100%"
+        rows="3"
+        :value="data.imageUrl"
+        :errorMessage="errorMessages.imageUrl"
+      />
+      <ControlField
         @onInputChange="handleFormChange($event, 'dishDescription')"
         type="DishDescription"
         label="Dish Description"
@@ -213,7 +222,7 @@
         width="100%"
         rows="3"
         :value="data.imageUrl"
-        :errorMessage="errorMessages.blogContent"
+        :errorMessage="errorMessages.imageUrl"
       />
       <ControlField
         @onInputChange="handleFormChange($event, 'blogContent')"
