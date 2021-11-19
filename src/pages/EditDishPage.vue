@@ -15,7 +15,7 @@
       @callbackEvent="handleSubmit"
     />
     <div class="reservation-title">
-      <p>Create/Edit Dish</p>
+      <p>Edit Dish</p>
     </div>
     <div style="width: 50%; margin: auto;">
       <Form
