@@ -14,27 +14,70 @@
                     :height="'100px'"
                     :imgSize="'70px'"
                     :items="[user.id, user.username, user.email, user.phoneNumber]"
-                    :layout="[]"
-                />
+                    @onSubmit="toggleDeleteBtn(user.id)"
+                /> 
             </div>
         </div>
+        <ModalConfirm
+            @toggleModalEvent="toggleDeleteBtn()"
+            :isOpen="this.isDeleteModalOpen"
+            :title="'Are you sure ?'"
+            :content="'Do you want to delete this user ?'"
+            @callbackEvent="deleteUser"
+        />
     </div>
 </template>
 
 <script>
 import $ from "jquery";
 import AdminItem from "../components/AdminItem.vue";
+import ModalConfirm from "../components/ModalConfirm.vue";
 export default {
     name: "adminUser",
     components: {
         AdminItem,
+        ModalConfirm,
     },
     data() {
         return {
+            isDeleteModalOpen: false,
+            idUser: 0,
             users: [],
         };
     },
     methods: {
+        reloadPage() {
+            window.location.reload();
+            window.location.replace("http://localhost:8080/admin/user");
+        },
+
+        toggleDeleteBtn(id) {
+            this.isDeleteModalOpen = !this.isDeleteModalOpen;
+            this.idUser = id;
+            console.log(this.idUser);
+        },
+
+        deleteUser() {
+            var __this = this;
+            var settings = {
+                url: `${process.env.VUE_APP_API_URL}/admin/delete_user/{${this.idUser}}`,
+                method: "POST",
+                timeout: 0,
+                headers: {
+                    "Bear-Token": localStorage.getItem("UserToken"),
+                },
+            };
+
+            $.ajax(settings)
+                .done((response) => {
+                    console.log(response);
+                    __this.reloadPage();
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus + ": " + errorThrown);
+                });
+        },
+
         getUser() {
             const __this = this;
             var settings = {
@@ -48,11 +91,11 @@ export default {
 
             $.ajax(settings)
                 .done(function(response) {
-                const a = JSON.parse(response).response;
-                __this.users = a;
+                    const a = JSON.parse(response).response;
+                    __this.users = a;
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
-                console.log(textStatus + ": " + errorThrown);
+                    console.log(textStatus + ": " + errorThrown);
                 });
         },
     },
