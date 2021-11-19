@@ -15,7 +15,7 @@
       @callbackEvent="handleSubmit"
     />
     <div class="reservation-title">
-      <p>Edit Dish</p>
+      <p>Create/Edit Dish</p>
     </div>
     <div style="width: 50%; margin: auto;">
       <Form
@@ -87,7 +87,7 @@ export default {
 
     GetDishData() {
       var settings = {
-        url: `${process.env.VUE_APP_API_URL}/menu`,
+        url: `${process.env.VUE_APP_API_URL}/dish/${this.currentDishId}`,
         method: "GET",
         timeout: 0,
         data: {},
@@ -97,15 +97,14 @@ export default {
       $.ajax(settings).then((response) => {
         response = JSON.parse(response);
         if (response.status === 200) {
-          const dishes = response.response;
-          const index = dishes.findIndex(
-            (dish) => dish.id == this.currentDishId
-          );
-          console.log("Dishes: ", dishes);
+          const dish = response.response;
+          // const index = dishes.findIndex(
+          //   (dish) => dish.id == this.currentDishId
+          // );
           this.formData.dishId = this.currentDishId;
-          this.formData.imageUrl = dishes[index].image;
-          this.formData.dishTitle = dishes[index].name;
-          this.formData.dishDescription = dishes[index].description;
+          this.formData.imageUrl = dish.image;
+          this.formData.dishTitle = dish.name;
+          this.formData.dishDescription = dish.description;
         } else {
           alert("Cannot get dish to edit");
         }

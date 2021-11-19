@@ -52,7 +52,7 @@ export default {
     var userValue = null;
     if (localStorage.getItem("User") != null) {
       managerValue = JSON.parse(localStorage.getItem("User")).manager;
-      userValue = localStorage.getItem("User");
+      userValue = JSON.parse(localStorage.getItem("User"));
     }
 
     return {
@@ -91,7 +91,7 @@ export default {
         },
       };
 
-      $.ajax(settings).done(function (response) {
+      $.ajax(settings).done(function(response) {
         const a = JSON.parse(response);
         console.log(a);
         __this.reloadPage();

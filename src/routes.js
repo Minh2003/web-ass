@@ -64,11 +64,11 @@ const routes = [
     name: "adminCreateDish",
     component: EditDishPage,
   },
-  // {
-  //   path: "/admin/dish/:id/edit",
-  //   name: "adminEditDish",
-  //   component: EditDishPage,
-  // },
+  {
+    path: "/admin/dish/:id/edit",
+    name: "adminEditDish",
+    component: EditDishPage,
+  },
   {
     path: "/admin/menu",
     name: "adminMenu",

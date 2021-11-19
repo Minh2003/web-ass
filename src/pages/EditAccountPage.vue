@@ -18,7 +18,9 @@
       @toggleModalEvent="toggleModalOpen('password')"
       :isOpen="this.isEditPasswordModalOpen"
       :title="'Edit Password Confirm'"
-      :content="'You are about to edit your password, please relogin if success'"
+      :content="
+        'You are about to edit your password, please relogin if success'
+      "
       @callbackEvent="handleSubmit"
     />
     <SideBar @logoutEvent="toggleModalOpen('logout')" />
@@ -93,7 +95,10 @@ export default {
         confirmNewPassword: "",
       },
       schema: yup.object().shape({
-        email: yup.string().email().label("Email"),
+        email: yup
+          .string()
+          .email()
+          .label("Email"),
         phone: yup
           .string()
           .matches(/^[0-9]{10}$/, "Phone number must be 10 digits"),
@@ -109,7 +114,11 @@ export default {
             /(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)/gm,
             "Time must be of HH:MM:SS"
           ),
-        totalPeople: yup.number().min(1).max(30).label("Number of persons"),
+        totalPeople: yup
+          .number()
+          .min(1)
+          .max(30)
+          .label("Number of persons"),
       }),
     };
   },
@@ -211,7 +220,7 @@ export default {
             "Bear-Token": UserToken,
           },
         };
-        $.ajax(settings).done(function (response) {
+        $.ajax(settings).done(function(response) {
           response = JSON.parse(JSON.stringify(JSON.parse(response)));
           console.log("Edit Account Response: ", response);
           if (response.status == 200) {
@@ -220,6 +229,7 @@ export default {
             __this.editNotes(response.response);
           } else {
             __this.$refs.noteTitle.innerHTML = response.message;
+            __this.isSuccess = true;
             __this.editNotes(null);
           }
         });
@@ -241,7 +251,7 @@ export default {
             "Bear-Token": UserToken,
           },
         };
-        $.ajax(settings).done(function (response) {
+        $.ajax(settings).done(function(response) {
           response = JSON.parse(JSON.stringify(JSON.parse(response)));
           console.log("Edit Account Response: ", response);
           if (response.status == 200) {

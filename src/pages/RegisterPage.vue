@@ -62,7 +62,10 @@ export default {
         confirmPassword: "",
       },
       schema: yup.object().shape({
-        email: yup.string().email().label("Email"),
+        email: yup
+          .string()
+          .email()
+          .label("Email"),
         phone: yup
           .string()
           .matches(/^[0-9]{10}$/, "Phone number must be 10 digits"),
@@ -71,9 +74,26 @@ export default {
   },
 
   methods: {
+    async handleInputValidation({ name, value }) {
+      let validationResult = await this.schema
+        .validate({ [name]: value })
+        .catch((error) => {
+          return error;
+        });
+      if (validationResult.errors) {
+        console.log(validationResult.errors[0]);
+        this.errorMessages[name] = validationResult.errors[0];
+      } else {
+        this.errorMessages[name] = "";
+      }
+    },
+
     handleFormChange(newData) {
       this.formData[newData.name] = newData.value;
+      console.log("Form Changed");
+      this.handleInputValidation(newData);
     },
+
     reloadPage() {
       window.location.reload();
       window.location.replace("http://localhost:8080/");
@@ -106,7 +126,8 @@ export default {
         headers: {},
       };
 
-      $.ajax(settings).then(function (response) {
+      $.ajax(settings).then(function(response) {
+        console.log("Register response: ", JSON.parse(response));
         if (JSON.parse(response).status != 200) {
           __this.isFail = true;
           __this.$refs.noteTitle.innerHTML = JSON.parse(response).message;
