@@ -1,7 +1,7 @@
 <template>
   <v-container v-show="manager == '1'" fluid>
     <div class="d-flex">
-      <div class="mr-auto">Logo</div>
+      <div class="mr-auto"></div>
       <v-btn depressed color="black" to="/admin/menu">
         <span class="linkText">Menu</span>
       </v-btn>
@@ -46,4 +46,5 @@ export default {
 .linkText {
   color: white;
 }
+
 </style>

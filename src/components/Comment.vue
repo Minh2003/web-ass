@@ -1,15 +1,6 @@
 <template>
   <v-container fluid>
     <v-row align="center">
-      <v-spacer />
-      <v-spacer />
-      <v-spacer />
-      <div>
-        <v-avatar size="70">
-          <img :src="this.user.avatar" :alt="this.user.username" />
-        </v-avatar>
-      </div>
-      <v-spacer />
       <div class="comment">
         <v-container fluid>
           <v-lazy>
