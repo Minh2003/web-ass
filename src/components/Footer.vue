@@ -95,14 +95,26 @@ export default {
 }
 
 @media (max-width: 60em) {
+  .wrapper > div:nth-child(1) {
+    grid-area: col_1;
+  }
+  .wrapper > div:nth-child(2) {
+    grid-area: col_2;
+  }
+  .wrapper > div:nth-child(3) {
+    grid-area: col_3;
+  }
   .wrapper {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-areas:
+      "col_1 col_1 col_1"
+      "col_2 col_2 col_3";
     background-color: black;
     color: white;
   }
+
   .buttonSize {
-    width: 200px;
+    width: 150px;
     height: 60px;
   }
   .linkText {
@@ -124,11 +136,13 @@ export default {
   }
 }
 
-@media (max-width: 20em) {
+@media (max-width: 35em) {
   .wrapper {
     display: grid;
-    grid-template-columns: 1fr;
-    padding: 10px;
+    grid-template-areas:
+      "col_1 col_1 col_1"
+      "col_2 col_2 col_2"
+      "col_3 col_3 col_3";
     background-color: black;
     color: white;
   }
