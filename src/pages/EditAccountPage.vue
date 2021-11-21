@@ -134,7 +134,6 @@ export default {
           return error;
         });
       if (validationResult.errors) {
-        console.log(validationResult.errors[0]);
         this.errorMessages[name] = validationResult.errors[0];
       } else {
         this.errorMessages[name] = "";
@@ -164,7 +163,7 @@ export default {
         this.notes["New Phone Number"] = phoneNumber;
         this.isSuccess = true;
       } else {
-        this.isSuccess = false;
+        this.isSuccess = true;
       }
     },
 
@@ -174,7 +173,6 @@ export default {
     },
 
     logoutUser() {
-      console.log("Logout User");
       if (localStorage.getItem("UserToken") !== "") {
         localStorage.removeItem("UserToken");
       }
@@ -188,7 +186,6 @@ export default {
     handleSubmit() {
       var __this = this;
       const formData = JSON.parse(JSON.stringify(this.formData));
-      console.log("Edit Account FormData: ", formData);
 
       const UserToken = localStorage.getItem("UserToken");
       if (localStorage.getItem("UserToken") === "") {
@@ -222,7 +219,6 @@ export default {
         };
         $.ajax(settings).done(function(response) {
           response = JSON.parse(JSON.stringify(JSON.parse(response)));
-          console.log("Edit Account Response: ", response);
           if (response.status == 200) {
             __this.$refs.noteTitle.innerHTML =
               "Your Profile Has Been Updated! Please Recheck Before Leaving";
@@ -253,7 +249,6 @@ export default {
         };
         $.ajax(settings).done(function(response) {
           response = JSON.parse(JSON.stringify(JSON.parse(response)));
-          console.log("Edit Account Response: ", response);
           if (response.status == 200) {
             __this.$refs.noteTitle.innerHTML =
               "Your Password Has Been Updated! Please Recheck Before Leaving";
@@ -270,13 +265,15 @@ export default {
    * Lifecycle Hooks
    */
   beforeMount() {
+    if (this.$route.name === "editAccount") {
+      this.$router.history.push({ name: "editAccountProfile" });
+    }
+
     if (localStorage.getItem("User") != "") {
       const UserInfo = JSON.parse(localStorage.getItem("User"));
-      console.log(UserInfo);
       this.formData.username = UserInfo["username"];
       this.formData.email = UserInfo["email"];
       this.formData.phone = UserInfo["phoneNumber"];
-      console.log(this.formData);
     }
   },
 };

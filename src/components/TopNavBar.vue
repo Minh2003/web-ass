@@ -22,7 +22,12 @@
           <span class="linkText">Sign in</span>
         </v-btn>
 
-        <v-btn v-show="user !== null" depressed color="black" to="/account">
+        <v-btn
+          v-show="user !== null"
+          depressed
+          color="black"
+          to="/account/profile"
+        >
           <span class="linkText"> My Acccount</span>
         </v-btn>
       </div>

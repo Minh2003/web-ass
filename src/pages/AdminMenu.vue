@@ -1,40 +1,40 @@
 <template>
-    <div>
-        <div class="d-flex">
-            <div>ID</div>
-            <div>Name</div>
-            <div>Image</div>
-            <div>Description</div>
-            <div>
-                <Button
-                    @onClick="handleAddBtnClick"
-                    text="Add Product"
-                    width="207px"
-                    height="53px"
-                    to="/admin/addDish"
-                />
-            </div>
-        </div>
-        <div class="d-flex flex-wrap justify-center">
-            <div v-for="dish in dishes" :key="dish.id">
-                <AdminItem
-                    type="Dish"
-                    :width="'95vw'"
-                    :height="'100px'"
-                    :imgSize="'70px'"
-                    :items="[dish.id, dish.name, dish.image, dish.description]"
-                    @onSubmit="toggleDeleteBtn(dish.id)"
-                />
-            </div>
-        </div>
-        <ModalConfirm
-            @toggleModalEvent="toggleDeleteBtn()"
-            :isOpen="this.isDeleteModalOpen"
-            :title="'Are you sure ?'"
-            :content="'Do you want to delete this dish ?'"
-            @callbackEvent="deleteDish"
+  <div>
+    <div class="d-flex">
+      <div>ID</div>
+      <div>Name</div>
+      <div>Image</div>
+      <div>Description</div>
+      <div>
+        <Button
+          @onClick="handleAddBtnClick"
+          text="Add Product"
+          width="207px"
+          height="53px"
+          to="/admin/dish/create"
         />
+      </div>
     </div>
+    <div class="d-flex flex-wrap justify-center">
+      <div v-for="dish in dishes" :key="dish.id">
+        <AdminItem
+          type="Dish"
+          :width="'95vw'"
+          :height="'100px'"
+          :imgSize="'70px'"
+          :items="[dish.id, dish.name, dish.image, dish.description]"
+          @onSubmit="toggleDeleteBtn(dish.id)"
+        />
+      </div>
+    </div>
+    <ModalConfirm
+      @toggleModalEvent="toggleDeleteBtn()"
+      :isOpen="this.isDeleteModalOpen"
+      :title="'Are you sure ?'"
+      :content="'Do you want to delete this dish ?'"
+      @callbackEvent="deleteDish"
+    />
+  </div>
 </template>
 
 <script>
@@ -43,76 +43,76 @@ import Button from "../components/Button.vue";
 import AdminItem from "../components/AdminItem.vue";
 import ModalConfirm from "../components/ModalConfirm.vue";
 export default {
-    name: 'adminMenu',
-    components: {
-        AdminItem,
-        Button,
-        ModalConfirm,
+  name: "adminMenu",
+  components: {
+    AdminItem,
+    Button,
+    ModalConfirm,
+  },
+  data() {
+    return {
+      isDeleteModalOpen: false,
+      idDish: 0,
+      dishes: [],
+    };
+  },
+  methods: {
+    handleAddBtnClick() {
+      this.$router.push({ name: "adminCreateDish" });
     },
-    data() {
-        return {
-            isDeleteModalOpen: false,
-            idDish: 0,
-            dishes: [],
-        };
+
+    reloadPage() {
+      window.location.reload();
+      window.location.replace("http://localhost:8080/admin/menu");
     },
-    methods: {
-        handleAddBtnClick() {
-            this.$router.push({ name: "addDish" });
-        },
 
-        reloadPage() {
-            window.location.reload();
-            window.location.replace("http://localhost:8080/admin/menu");
-        },
-
-        toggleDeleteBtn(id) {
-            this.isDeleteModalOpen = !this.isDeleteModalOpen;
-            this.idDish = id;
-            console.log(this.idDish);
-        },
-
-        deleteDish() {
-            var __this = this;
-            var settings = {
-                url: `${process.env.VUE_APP_API_URL}/admin/delete_dish/{${this.idDish}}`,
-                method: "POST",
-                timeout: 0,
-                headers: {
-                    "Bear-Token": localStorage.getItem("UserToken"),
-                },
-            };
-
-            $.ajax(settings)
-                .done((response) => {
-                    console.log(response);
-                    __this.reloadPage();
-                })
-                .fail(function(jqXHR, textStatus, errorThrown) {
-                    console.log(textStatus + ": " + errorThrown);
-                });
-        },
-
-        getMenu() {
-            const __this = this;
-            var settings = {
-                url: `${process.env.VUE_APP_API_URL}/menu`,
-                method: "GET",
-                timeout: 0,
-            };
-
-            $.ajax(settings)
-                .done(function(response) {
-                    const a = JSON.parse(response).response;
-                    __this.dishes = a;
-                })
-                .fail(function(jqXHR, textStatus, errorThrown) {
-                    console.log(textStatus + ": " + errorThrown);
-                });
-        },
+    toggleDeleteBtn(id) {
+      this.isDeleteModalOpen = !this.isDeleteModalOpen;
+      this.idDish = id;
+      console.log(this.idDish);
     },
-    beforeMount() {
-        this.getMenu();
+
+    deleteDish() {
+      var __this = this;
+      var settings = {
+        url: `${process.env.VUE_APP_API_URL}/admin/delete_dish/{${this.idDish}}`,
+        method: "POST",
+        timeout: 0,
+        headers: {
+          "Bear-Token": localStorage.getItem("UserToken"),
+        },
+      };
+
+      $.ajax(settings)
+        .done((response) => {
+          console.log(response);
+          __this.reloadPage();
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus + ": " + errorThrown);
+        });
     },
-}
+
+    getMenu() {
+      const __this = this;
+      var settings = {
+        url: `${process.env.VUE_APP_API_URL}/menu`,
+        method: "GET",
+        timeout: 0,
+      };
+
+      $.ajax(settings)
+        .done(function(response) {
+          const a = JSON.parse(response).response;
+          __this.dishes = a;
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus + ": " + errorThrown);
+        });
+    },
+  },
+  beforeMount() {
+    this.getMenu();
+  },
+};
 </script>

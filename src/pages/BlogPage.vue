@@ -15,7 +15,7 @@
     <div class="buttonCreate">
       <v-btn
         v-show="manager == '1'"
-        @click="this.testing"
+        @click="this.routeToCreateBlog"
         width="24.375vw"
         height="2.778vw"
         color="#e1651f"
@@ -54,10 +54,9 @@ export default {
     };
   },
   methods: {
-    testing() {
-      console.log("hihi");
+    routeToCreateBlog() {
+      window.location.replace("http://localhost:8080/admin/blog/create");
     },
-
     getBlog() {
       const __this = this;
       var settings = {
@@ -66,7 +65,7 @@ export default {
         timeout: 0,
       };
 
-      $.ajax(settings).done(function (response) {
+      $.ajax(settings).done(function(response) {
         const a = JSON.parse(response).response;
         //console.log(response);
         __this.blogs = a;

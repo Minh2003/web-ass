@@ -71,6 +71,7 @@ export default {
   },
   beforeMount() {
     this.currentDishId = this.$route.params.id;
+    console.log(this.currentDishId);
     if (this.currentDishId) {
       this.GetDishData();
     }
@@ -87,15 +88,17 @@ export default {
 
     GetDishData() {
       var settings = {
-        url: `${process.env.VUE_APP_API_URL}/dish/${this.currentDishId}`,
+        url: `${process.env.VUE_APP_API_URL}/dish/{${this.currentDishId}}`,
         method: "GET",
         timeout: 0,
         data: {},
         headers: {},
       };
+      console.log("Get Dish Setting", settings);
 
       $.ajax(settings).then((response) => {
         response = JSON.parse(response);
+        console.log("Get Dish Response", response);
         if (response.status === 200) {
           const dish = response.response;
           // const index = dishes.findIndex(
@@ -167,6 +170,7 @@ export default {
           } else {
             __this.$refs.noteTitle.innerHTML = response.message;
           }
+          __this.toggleModalOpen("createDish");
         });
       } else if (this.$route.name === "adminEditDish") {
         /**
@@ -192,6 +196,7 @@ export default {
             __this.$refs.noteTitle.innerHTML = "Your Dish Have Been Edited";
           } else {
             __this.$refs.noteTitle.innerHTML = response.message;
+            __this.toggleModalOpen("editDish");
           }
         });
       }

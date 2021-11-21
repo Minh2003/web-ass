@@ -162,6 +162,7 @@ export default {
           } else {
             __this.$refs.noteTitle.innerHTML = response.message;
           }
+          __this.toggleModalOpen("createBlog");
         });
       } else if (this.$route.name === "adminEditBlog") {
         /**
@@ -188,6 +189,7 @@ export default {
           } else {
             __this.$refs.noteTitle.innerHTML = response.message;
           }
+          __this.toggleModalOpen("editBlog");
         });
       }
     },
