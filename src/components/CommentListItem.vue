@@ -1,17 +1,9 @@
 <template>
   <v-container fluid>
     <v-row align="center">
-      <v-spacer />
-      <v-spacer />
-      <v-spacer />
-      <div>
-        <v-avatar size="70">
-          <img :src="this.user.avatar" :alt="this.user.username" />
-        </v-avatar>
-      </div>
-      <v-spacer />
-      <div class="comment">
+      <div class="comment" style="width = 70%">
         <v-container fluid>
+          <span class="comment_title"> {{ comment.username }} </span>
           <v-lazy>
             <v-textarea
               hide-details
@@ -19,7 +11,6 @@
               rows="3"
               auto-grow
               style="padding = 0"
-              placeholder="Say something"
               disabled
               :value="comment.description"
             ></v-textarea>
@@ -29,9 +20,10 @@
       <v-spacer />
       <div>
         <v-btn
-          v-show="user.id == comment.user_id || this.manager == 1"
+          v-show="userID == comment.user_id || this.manager == 1"
           color="#e1651f"
           @click="DeleteComment"
+          class="button"
         >
           <div class="buttonText">Delete</div>
         </v-btn>
@@ -50,14 +42,17 @@ export default {
   data() {
     var managerValue = "0";
     var userValue = null;
+    var userID = "";
     if (localStorage.getItem("User") != null) {
       managerValue = JSON.parse(localStorage.getItem("User")).manager;
-      userValue = localStorage.getItem("User");
+      userValue = JSON.parse(localStorage.getItem("User"));
+      userID = JSON.parse(localStorage.getItem("User")).id;
     }
 
     return {
       user: userValue,
       manager: managerValue,
+      userID: userID,
     };
 
     // return {
@@ -112,9 +107,24 @@ export default {
 
 <style scoped>
 .comment {
-  width: 75vw;
+  width: 65vw;
 }
 .buttonText {
   color: white;
+}
+.comment_title {
+  font-weight: 600;
+  color: #c7632a;
+}
+.button {
+  width: 100px;
+}
+@media (max-width: 35em) {
+  .comment {
+    width: 55vw;
+  }
+  .button {
+    width: 70px;
+  }
 }
 </style>

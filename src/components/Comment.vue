@@ -1,15 +1,6 @@
 <template>
   <v-container fluid>
     <v-row align="center">
-      <v-spacer />
-      <v-spacer />
-      <v-spacer />
-      <div>
-        <v-avatar size="70">
-          <img :src="this.user.avatar" :alt="this.user.username" />
-        </v-avatar>
-      </div>
-      <v-spacer />
       <div class="comment">
         <v-container fluid>
           <v-lazy>
@@ -27,7 +18,7 @@
       </div>
       <v-spacer />
       <div>
-        <v-btn color="#e1651f" @click="PostComment">
+        <v-btn color="#e1651f" @click="PostComment" class="button">
           <div class="buttonText">Send</div>
         </v-btn>
       </div>
@@ -100,9 +91,24 @@ export default {
 
 <style scoped>
 .comment {
-  width: 75vw;
+  width: 65vw;
 }
 .buttonText {
   color: white;
+}
+.comment_title {
+  font-weight: 600;
+  color: #c7632a;
+}
+.button {
+  width: 100px;
+}
+@media (max-width: 35em) {
+  .comment {
+    width: 55vw;
+  }
+  .button {
+    width: 70px;
+  }
 }
 </style>

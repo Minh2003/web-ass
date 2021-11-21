@@ -19,10 +19,9 @@
         </p>
       </div>
       <div>
-        <span class="menu-title">Subcribe </span>
-
-        <v-btn to="/reg" width="24.375vw" height="2.778vw" color="#e1651f">
-          <span class="linkText">Create an account</span>
+        <span class="menu-title">Our news <br /> </span>
+        <v-btn to="/blog" class="buttonSize" color="#e1651f">
+          <span class="linkText">Our blogs</span>
         </v-btn>
       </div>
     </div>
@@ -34,6 +33,11 @@
 export default {
   components: {},
   name: "Footer",
+  data() {
+    return {
+      //userToken: localStorage.getItem("UserToken"),
+    };
+  },
 };
 </script>
 
@@ -45,9 +49,6 @@ export default {
   background-color: black;
   color: white;
 }
-.wrapper > div:nth-child(2) {
-  padding-left: 5vw;
-}
 .wrapper > div:nth-child(1) {
   overflow: hidden;
 }
@@ -55,18 +56,14 @@ export default {
 .wrapper > div {
   padding: 30px;
 }
+.buttonSize {
+  width: 300px;
+  height: 100px;
+}
 
-@media (max-width: 60em) {
-  .wrapper {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    padding: 10px;
-    background-color: black;
-    color: white;
-  }
-  .des {
-    display: none;
-  }
+.linkText {
+  color: white;
+  font-size: 20px;
 }
 
 .h1 {
@@ -92,9 +89,83 @@ export default {
 .btn-wrapper {
   margin: 25px 0 65px 0;
 }
+.buttonSize {
+  width: 250px;
+  height: 120px;
+}
 
-.linkText {
-  color: white;
-  font-size: 1vw;
+@media (max-width: 60em) {
+  .wrapper > div:nth-child(1) {
+    grid-area: col_1;
+  }
+  .wrapper > div:nth-child(2) {
+    grid-area: col_2;
+  }
+  .wrapper > div:nth-child(3) {
+    grid-area: col_3;
+  }
+  .wrapper {
+    display: grid;
+    grid-template-areas:
+      "col_1 col_1 col_1"
+      "col_2 col_2 col_3";
+    background-color: black;
+    color: white;
+  }
+
+  .buttonSize {
+    width: 150px;
+    height: 60px;
+  }
+  .linkText {
+    color: white;
+    font-size: 14px;
+  }
+  .menu-title {
+    font-family: Oleo Script Swash Caps;
+    text-align: center;
+    font-size: 150%;
+    margin: 2% 0% -1% 0%;
+  }
+  .menu-description {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 70%;
+    text-align: center;
+    margin: 0% 0% -1% 0%;
+  }
+}
+
+@media (max-width: 35em) {
+  .wrapper {
+    display: grid;
+    grid-template-areas:
+      "col_1 col_1 col_1"
+      "col_2 col_2 col_2"
+      "col_3 col_3 col_3";
+    background-color: black;
+    color: white;
+  }
+  .buttonSize {
+    width: 200px;
+    height: 60px;
+  }
+  .linkText {
+    color: white;
+    font-size: 14px;
+  }
+  .menu-title {
+    font-family: Oleo Script Swash Caps;
+    text-align: center;
+    font-size: 100%;
+    margin: 2% 0% -1% 0%;
+  }
+  .menu-description {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 70%;
+    text-align: center;
+    margin: 0% 0% -1% 0%;
+  }
 }
 </style>

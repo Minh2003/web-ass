@@ -1,18 +1,18 @@
 <template>
   <v-container v-show="manager == '1'" fluid>
     <div class="d-flex">
-      <div class="mr-auto">Logo</div>
-      <v-btn depressed color="black" to="/admin/menu">
+      <div class="mr-auto"></div>
+      <v-btn depressed color="black" to="/admin/menu" small>
         <span class="linkText">Menu</span>
       </v-btn>
-      <v-btn depressed color="black" to="/blog">
-        <span class="linkText">Blog</span>
+      <v-btn depressed color="black" to="/blog" small>
+        <span class="linkText">Blogs</span>
       </v-btn>
-      <v-btn depressed color="black" to="/admin/user">
+      <v-btn depressed color="black" to="/admin/user" small>
         <span class="linkText">Users</span>
       </v-btn>
-      <v-btn v-show="user !== null" depressed color="black" to="/account">
-        <span class="linkText"> My account</span>
+      <v-btn v-show="user !== null" depressed color="black" to="/account" small>
+        <span class="linkText">Account</span>
       </v-btn>
     </div>
   </v-container>

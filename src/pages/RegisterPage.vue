@@ -2,7 +2,7 @@
   <v-container fluid class="background">
     <v-row>
       <v-col>
-        <v-layout align-center justify-center> Logo bên đây nè </v-layout>
+        <v-layout align-center justify-center> </v-layout>
       </v-col>
       <v-col>
         <v-layout align-center justify-center>
@@ -17,7 +17,7 @@
           </v-col>
         </v-layout>
         <v-layout align-center justify-center>
-          Hoặc
+          <span class="text">Hoặc</span>
           <v-btn text color="#e1651f" to="/auth">
             <span class="linkText">Đăng nhập</span>
           </v-btn>
@@ -163,5 +163,8 @@ export default {
   text-align: center;
   font-size: 200%;
   margin: 20px 0 20px 0;
+}
+.text {
+  color: rgb(159, 159, 159);
 }
 </style>
