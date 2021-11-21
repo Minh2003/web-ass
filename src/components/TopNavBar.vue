@@ -4,39 +4,51 @@
       <div class="mr-auto"></div>
       <div class="NavBar">
         <div>
-          <v-btn depressed color="black" to="/">
+          <v-btn depressed color="black" to="/" small>
             <span class="linkText">Home</span>
           </v-btn>
         </div>
         <div>
-          <v-btn depressed color="black" to="/about">
+          <v-btn depressed color="black" to="/about" small>
             <span class="linkText">About</span>
           </v-btn>
         </div>
         <div>
-          <v-btn depressed color="black" to="/menu">
+          <v-btn depressed color="black" to="/menu" small>
             <span class="linkText">Menu</span>
           </v-btn>
         </div>
         <div>
-          <v-btn depressed color="black" to="/blog">
+          <v-btn depressed color="black" to="/blog" small>
             <span class="linkText">Blogs</span>
           </v-btn>
         </div>
         <div>
-          <v-btn depressed color="black" to="/reservation">
+          <v-btn depressed color="black" to="/reservation" small>
             <span class="linkText">Reservation</span>
           </v-btn>
         </div>
         <div>
-          <v-btn v-show="user === null" depressed color="black" to="/auth">
+          <v-btn
+            v-show="user === null"
+            depressed
+            color="black"
+            to="/auth"
+            small
+          >
             <span class="linkText">Sign in</span>
           </v-btn>
         </div>
 
         <div>
-          <v-btn v-show="user !== null" depressed color="black" to="/account">
-            <span class="linkText"> My Acccount</span>
+          <v-btn
+            v-show="user !== null"
+            depressed
+            color="black"
+            to="/account"
+            small
+          >
+            <span class="linkText"> Acccount</span>
           </v-btn>
         </div>
       </div>
@@ -64,6 +76,9 @@ export default {
 </script>
 
 <style scoped>
+.together {
+  min-width: 0;
+}
 .container {
   width: 100vw;
   margin: 0;
@@ -98,6 +113,16 @@ export default {
   }
   .NavBar > div {
     width: 70%;
+    padding: 0px;
+  }
+  .NavBar {
+    flex-wrap: wrap;
+  }
+  .NavBar > div > v-btn {
+    width: 50%;
+  }
+  .buttonSize {
+    width: 50px;
   }
 }
 </style>

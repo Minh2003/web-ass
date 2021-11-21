@@ -16,9 +16,9 @@
       <v-btn
         v-show="manager == '1'"
         @click="this.testing"
-        width="24.375vw"
-        height="2.778vw"
+        class="buttonSize"
         color="#e1651f"
+        to="/admin/blog/create"
       >
         <span class="linkText">Create a new blog</span>
       </v-btn>
@@ -106,5 +106,19 @@ export default {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+}
+.buttonSize {
+  width: 300px;
+  height: 100px;
+}
+@media (max-width: 60em) {
+  .buttonSize {
+    width: 200px;
+    height: 60px;
+  }
+  .linkText {
+    color: white;
+    font-size: 14px;
+  }
 }
 </style>

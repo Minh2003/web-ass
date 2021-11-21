@@ -29,9 +29,9 @@
     </div>
 
     <div class="reply">
-      <h2 v-if="user !== null">Reply</h2>
+      <h2>Reply</h2>
       <comment v-if="user !== null" :id="item.blog.id" />
-      <div v-for="comment in comments" :key="comment.id">
+      <div v-for="comment in comments.slice().reverse()" :key="comment.id">
         <comment-list-item :comment="comment" />
       </div>
     </div>
@@ -51,7 +51,7 @@ export default {
     var userValue = null;
     if (localStorage.getItem("User") != null) {
       managerValue = JSON.parse(localStorage.getItem("User")).manager;
-      userValue = localStorage.getItem("User");
+      userValue = JSON.parse(localStorage.getItem("User"));
     }
     return {
       isLoading: false,

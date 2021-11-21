@@ -49,9 +49,6 @@ export default {
   background-color: black;
   color: white;
 }
-.wrapper > div:nth-child(2) {
-  padding-left: 5vw;
-}
 .wrapper > div:nth-child(1) {
   overflow: hidden;
 }
@@ -60,13 +57,13 @@ export default {
   padding: 30px;
 }
 .buttonSize {
-  width: 200px;
+  width: 300px;
   height: 100px;
 }
 
 .linkText {
   color: white;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .h1 {
@@ -92,20 +89,51 @@ export default {
 .btn-wrapper {
   margin: 25px 0 65px 0;
 }
+.buttonSize {
+  width: 250px;
+  height: 120px;
+}
 
 @media (max-width: 60em) {
   .wrapper {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
+    background-color: black;
+    color: white;
+  }
+  .buttonSize {
+    width: 200px;
+    height: 60px;
+  }
+  .linkText {
+    color: white;
+    font-size: 14px;
+  }
+  .menu-title {
+    font-family: Oleo Script Swash Caps;
+    text-align: center;
+    font-size: 150%;
+    margin: 2% 0% -1% 0%;
+  }
+  .menu-description {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 70%;
+    text-align: center;
+    margin: 0% 0% -1% 0%;
+  }
+}
+
+@media (max-width: 20em) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
     padding: 10px;
     background-color: black;
     color: white;
   }
-  .des {
-    display: none;
-  }
   .buttonSize {
-    width: 100px;
+    width: 200px;
     height: 60px;
   }
   .linkText {
