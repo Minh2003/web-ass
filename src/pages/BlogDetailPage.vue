@@ -12,6 +12,15 @@
         >
           <span class="linkText">Delete</span>
         </v-btn>
+        <v-btn
+          v-show="manager == '1'"
+          @click="this.routeToEditBlog"
+          width="7vw"
+          height="2.5vw"
+          color="#e1651f"
+        >
+          <span class="linkText">Edit</span>
+        </v-btn>
       </v-layout>
       <v-layout align-center justify-center>
         <v-img
@@ -70,6 +79,13 @@ export default {
     reloadPage() {
       window.location.reload();
       window.location.replace("http://localhost:8080/blog");
+    },
+
+    routeToEditBlog() {
+      this.$router.push({
+        name: "adminEditBlog",
+        params: { id: this.$route.params.id },
+      });
     },
 
     deletePost() {

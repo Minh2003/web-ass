@@ -33,10 +33,7 @@
     </v-container>
 
     <!-- User Admin Header -->
-    <v-container
-      v-else-if="type == 'UserHeader'"
-      :style="[styleHeader]"
-    >
+    <v-container v-else-if="type == 'UserHeader'" :style="[styleHeader]">
       <v-row align="center" justify="center">
         <v-col :style="[element, primary]">
           {{ items[0] }}
@@ -53,11 +50,7 @@
         <div>
           <v-col>
             <div class="add-btn ">
-                <Button
-                  width="207px"
-                  height="53px"
-                  text="White Button"
-                />
+              <Button width="207px" height="53px" text="White Button" />
             </div>
           </v-col>
         </div>
@@ -90,6 +83,7 @@
               text="Edit"
               :width="'90px'"
               :height="'27px'"
+              @onClick="handleEditBtnClick"
             />
           </v-col>
         </div>
@@ -108,10 +102,7 @@
     </v-container>
 
     <!-- Dish Admin Header -->
-    <v-container
-      v-else-if="type == 'DishHeader'"
-      :style="[styleHeader]"
-    >
+    <v-container v-else-if="type == 'DishHeader'" :style="[styleHeader]">
       <v-row align="center" justify="center">
         <v-col :style="[element, primary]">
           {{ items[0] }}
@@ -128,12 +119,12 @@
         <div>
           <v-col>
             <div class="add-btn">
-                <Button
-                    @onClick="handleSubmit"
-                    text="Add Product"
-                    width="207px"
-                    height="53px"
-                />
+              <Button
+                @onClick="handleAddBtnClick"
+                text="Add Product"
+                width="207px"
+                height="53px"
+              />
             </div>
           </v-col>
         </div>
@@ -156,6 +147,17 @@ export default {
     imgSize: String,
   },
   methods: {
+    handleAddBtnClick() {
+      this.$router.push({ name: "adminCreateDish" });
+    },
+
+    handleEditBtnClick() {
+      this.$router.push({
+        name: "adminEditDish",
+        params: { id: this.items[0] },
+      });
+    },
+
     handleSubmit() {
       this.$emit("onSubmit");
     },
@@ -197,18 +199,17 @@ export default {
         lineHeight: "160%",
         textDecorationLine: "underline",
         color: "#6a6a6a",
-        padding: '0 15px'
+        padding: "0 15px",
       },
       dishImage: {
         width: this.imgSize,
         height: this.imgSize,
         borderRadius: "10px",
-        margin: '0 20px'
+        margin: "0 20px",
       },
     };
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -1,6 +1,11 @@
 <template>
   <div class="outer-wrapper">
-    <v-navigation-drawer width="60%" permanent>
+    <v-navigation-drawer
+      :height="navHeight"
+      :width="navWidth"
+      class="navigation-wrapper"
+      permanent
+    >
       <v-list class="sidebar-wrapper">
         <v-list-item
           v-for="([icon, text, link], i) in items"
@@ -17,10 +22,10 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <div class="logout-button">
-        <Button @onClick="logoutEvent" :text="'Log out'" />
-      </div>
     </v-navigation-drawer>
+    <div class="logout-button">
+      <Button @onClick="logoutEvent" :text="'Log out'" />
+    </div>
   </div>
 </template>
 
@@ -56,19 +61,82 @@ export default {
       this.$emit("logoutEvent");
     },
   },
+  computed: {
+    navWidth() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return "100%";
+        case "sm":
+          return "100%";
+        case "md":
+          return "100%";
+        case "lg":
+          return "100%";
+        case "xl":
+          return "100%";
+        default:
+          return "100%";
+      }
+    },
+    navHeight() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return "200px";
+        case "sm":
+          return "200px";
+        case "md":
+          return "500px";
+        case "lg":
+          return "500px";
+        case "xl":
+          return "500px";
+        default:
+          return "500px";
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
 .sidebar-wrapper {
-  margin: 150px 100px 150px 0px;
+  margin-top: 100px;
+  width: 100%;
 }
 
 .outer-wrapper {
   width: 40%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .logout-button {
-  margin-left: 100px;
-  margin-bottom: 100px;
+  margin: auto;
+}
+
+.navigation-wrapper {
+  width: 80%;
+}
+
+@media screen and (max-width: 1700px) {
+  .outer-wrapper {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .outer-wrapper {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .sidebar-wrapper {
+    margin-top: 50px;
+    width: 100%;
+  }
+  .outer-wrapper {
+    width: 100%;
+  }
 }
 </style>

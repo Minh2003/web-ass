@@ -1,12 +1,5 @@
 <template>
   <div>
-    <Button
-      @onClick="handleAddBtnClick"
-      text="Add Product"
-      width="207px"
-      height="53px"
-      to="/admin/dish/create"
-    />
     <div class="d-flex flex-wrap justify-center">
       <AdminItem
         type="DishHeader"
@@ -48,7 +41,6 @@ export default {
   name: "adminMenu",
   components: {
     AdminItem,
-    Button,
     ModalConfirm,
   },
   data() {
@@ -59,10 +51,6 @@ export default {
     };
   },
   methods: {
-    handleAddBtnClick() {
-      this.$router.push({ name: "adminCreateDish" });
-    },
-
     reloadPage() {
       window.location.reload();
       window.location.replace("http://localhost:8080/admin/menu");

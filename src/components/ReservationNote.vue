@@ -1,6 +1,11 @@
 <template>
   <div v-if="isSuccess" :style="[style]">
-    <div :style="[styleInfo]" v-for="(value, key, index) in notes" :key="index">
+    <div
+      class="info-item"
+      :style="[styleInfo]"
+      v-for="(value, key, index) in notes"
+      :key="index"
+    >
       <p>{{ key }}: {{ value }}</p>
     </div>
   </div>
@@ -26,17 +31,33 @@ export default {
         flexWrap: "wrap",
       },
       styleInfo: {
-        width: "50%",
-        fontSize: "110%",
-        display: "flex",
-        justifyContent: "center",
-        marginTop: "20px",
-        fontFamily: "Poppins",
-        fontWeight: "400",
+        // width: "50%",
+        // fontSize: "110%",
+        // display: "flex",
+        // justifyContent: "center",
+        // marginTop: "20px",
+        // fontFamily: "Poppins",
+        // fontWeight: "400",
       },
     };
   },
 };
 </script>
 
-<style></style>
+<style>
+.info-item {
+  width: 50%;
+  font-size: 110%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-family: "Poppins";
+  font-weight: 400;
+}
+
+@media screen and (max-width: 900px) {
+  .info-item {
+    width: 100%;
+  }
+}
+</style>

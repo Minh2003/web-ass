@@ -17,7 +17,7 @@
     <div class="reservation-title">
       <p>Create/Edit Dish</p>
     </div>
-    <div style="width: 50%; margin: auto;">
+    <div class="form-wrapper">
       <Form
         :type="'EditDish'"
         :data="formData"
@@ -101,9 +101,6 @@ export default {
         console.log("Get Dish Response", response);
         if (response.status === 200) {
           const dish = response.response;
-          // const index = dishes.findIndex(
-          //   (dish) => dish.id == this.currentDishId
-          // );
           this.formData.dishId = this.currentDishId;
           this.formData.imageUrl = dish.image;
           this.formData.dishTitle = dish.name;
@@ -149,6 +146,7 @@ export default {
         /**
          * Handle Edit Profile
          */
+        this.toggleModalOpen("createDish");
         let settings = {
           url: `${process.env.VUE_APP_API_URL}/admin/create_dish`,
           method: "post",
@@ -167,15 +165,16 @@ export default {
           console.log("Create Dish Response: ", response);
           if (response.status == 200) {
             __this.$refs.noteTitle.innerHTML = "Your Dish Have Been Created";
+            __this.$router.replace({ name: "menu" });
           } else {
             __this.$refs.noteTitle.innerHTML = response.message;
           }
-          __this.toggleModalOpen("createDish");
         });
       } else if (this.$route.name === "adminEditDish") {
         /**
          * Handle Edit Password
          */
+        this.toggleModalOpen("editDish");
         let settings = {
           url: `${process.env.VUE_APP_API_URL}/admin/update_dish/{${this.currentDishId}}`,
           method: "post",
@@ -191,12 +190,12 @@ export default {
         };
         $.ajax(settings).done(function(response) {
           response = JSON.parse(response);
-          console.log("Edit Dish Response: ", response);
+          // console.log("Edit Dish Response: ", response);
           if (response.status == 200) {
             __this.$refs.noteTitle.innerHTML = "Your Dish Have Been Edited";
+            __this.$router.replace({ name: "menu" });
           } else {
             __this.$refs.noteTitle.innerHTML = response.message;
-            __this.toggleModalOpen("editDish");
           }
         });
       }
@@ -235,5 +234,34 @@ export default {
   text-align: center;
   font-size: 200%;
   margin: 20px 0 20px 0;
+}
+
+.form-wrapper {
+  width: 50%;
+  margin: auto;
+}
+
+@media screen and (max-width: 1700px) {
+  .form-wrapper {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .form-wrapper {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .form-wrapper {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .form-wrapper {
+    width: 90%;
+  }
 }
 </style>

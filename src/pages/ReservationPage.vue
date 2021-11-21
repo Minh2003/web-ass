@@ -237,4 +237,26 @@ export default {
   font-size: 200%;
   margin: 20px 0 20px 0;
 }
+
+@media screen and (max-width: 1700px) {
+  .reservation-page-wrapper {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .reservation-page-wrapper {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .reservation-page-wrapper {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .reservation-page-wrapper {
+    width: 90%;
+  }
+}
 </style>

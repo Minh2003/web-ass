@@ -17,7 +17,7 @@
     <div class="reservation-title">
       <p>Create/Edit Blog</p>
     </div>
-    <div style="width: 50%; margin: auto;">
+    <div class="form-wrapper">
       <Form
         :type="'EditBlog'"
         :data="formData"
@@ -128,7 +128,7 @@ export default {
     handleSubmit() {
       var __this = this;
       const formData = JSON.parse(JSON.stringify(this.formData));
-      console.log("Edit/Create Blog FormData: ", formData);
+      // console.log("Edit/Create Blog FormData: ", formData);
 
       const UserToken = localStorage.getItem("UserToken");
       if (UserToken === "") {
@@ -141,6 +141,7 @@ export default {
         /**
          * Handle Edit Profile
          */
+        this.toggleModalOpen("createBlog");
         let settings = {
           url: `${process.env.VUE_APP_API_URL}/admin/create_blog`,
           method: "post",
@@ -156,18 +157,19 @@ export default {
         };
         $.ajax(settings).done(function(response) {
           response = JSON.parse(response);
-          console.log("Create Blog Response: ", response);
+          // console.log("Create Blog Response: ", response);
           if (response.status == 200) {
             __this.$refs.noteTitle.innerHTML = "Your Blog Have Been Created";
+            __this.$router.replace({ name: "blog" });
           } else {
             __this.$refs.noteTitle.innerHTML = response.message;
           }
-          __this.toggleModalOpen("createBlog");
         });
       } else if (this.$route.name === "adminEditBlog") {
         /**
          * Handle Edit Password
          */
+        this.toggleModalOpen("editBlog");
         let settings = {
           url: `${process.env.VUE_APP_API_URL}/admin/update_blog/{${this.currentBlogId}}`,
           method: "post",
@@ -183,13 +185,13 @@ export default {
         };
         $.ajax(settings).done(function(response) {
           response = JSON.parse(response);
-          console.log("Edit Blog Response: ", response);
+          // console.log("Edit Blog Response: ", response);
           if (response.status == 200) {
             __this.$refs.noteTitle.innerHTML = "Your Blog Have Been Edited";
+            __this.$router.replace({ name: "blog" });
           } else {
             __this.$refs.noteTitle.innerHTML = response.message;
           }
-          __this.toggleModalOpen("editBlog");
         });
       }
     },
@@ -227,5 +229,34 @@ export default {
   text-align: center;
   font-size: 200%;
   margin: 20px 0 20px 0;
+}
+
+.form-wrapper {
+  width: 50%;
+  margin: auto;
+}
+
+@media screen and (max-width: 1700px) {
+  .form-wrapper {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .form-wrapper {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .form-wrapper {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .form-wrapper {
+    width: 90%;
+  }
 }
 </style>

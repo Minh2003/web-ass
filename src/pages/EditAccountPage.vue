@@ -298,7 +298,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 50%;
+  width: 60%;
 }
 
 .option-item {
@@ -329,5 +329,11 @@ export default {
   text-align: center;
   font-size: 200%;
   margin: 20px 0 20px 0;
+}
+
+@media screen and (max-width: 900px) {
+  .update-form-wrapper {
+    width: 100%;
+  }
 }
 </style>
