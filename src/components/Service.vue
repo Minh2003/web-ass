@@ -22,7 +22,7 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
     .service-card {
-        margin: 30px 60px;
+        margin: 30px 70px;
     }
     .service-container {
         padding: 2% 4%;
@@ -37,7 +37,7 @@ export default {
         font-size: 24px;
         font-family: Oleo Script Swash Caps;
     }
-@media screen and (max-width: 1450px) {
+@media screen and (max-width: 1550px) {
     .service-card {
         margin: 30px 30px;
     }

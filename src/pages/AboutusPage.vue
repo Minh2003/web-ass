@@ -87,9 +87,9 @@ export default {
     }
     .question-description {
         text-align: center;
-        margin: 0vh 55vh 2vh 55vh;
+        margin: 0vh 35vw 2vh 35vw;
     }
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1600px) {
     .text-wrapper {
         width: 35%;
         margin: 5% 2% 5% 7%;
@@ -109,10 +109,10 @@ export default {
     }
     .question-description {
         text-align: center;
-        margin: 0vh 55vh 2vh 55vh;
+        margin: 0vh 30vw 2vh 30vw;
     }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1200px) {
     .text-wrapper {
         width: 80%;
         margin: 5% 2% 5% 7%;
@@ -132,10 +132,10 @@ export default {
     }
     .question-description {
         text-align: center;
-        margin: 0vh 16vh 2vh 16vh;
+        margin: 0vh 25vw 2vh 25vw;
     }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
     .text-wrapper {
         width: 90%;
         margin: 5% 2% 5% 7%;
@@ -158,7 +158,7 @@ export default {
     }
     .question-description {
         text-align: center;
-        margin: 0vh 4vh 2vh 4vh;
+        margin: 0vh 15vw 2vh 15vw;
     }
 }
 </style>

@@ -1,10 +1,13 @@
 <template>
     <div>
-        <div class="d-flex">
-            <div>ID</div>
-            <div>Name</div>
-            <div>Image</div>
-            <div>Description</div>
+        <div class="d-flex flex-wrap justify-center">
+            <AdminItem
+                type="UserHeader"
+                :width="'100vw'"
+                :height="'100px'"
+                :imgSize="'70px'"
+                :items="['ID', 'Name', 'Email', 'Phone']"
+            /> 
         </div>
         <div class="d-flex flex-wrap justify-center">
             <div v-for="user in users" :key="user.id">

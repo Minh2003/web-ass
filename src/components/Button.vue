@@ -90,6 +90,16 @@
     >
   </div>
 
+  <div v-else-if="text == 'White Button'">
+    <v-btn
+      :disabled="isDisabled"
+      @click="raiseEvent"
+      elevation="0"
+      :style="[styleWhite]"
+      >{{ text }}</v-btn
+    >
+  </div>
+
   <div v-else>
     <v-btn
       :disabled="isDisabled"
@@ -122,6 +132,16 @@ export default {
 
   data() {
     return {
+      styleWhite: {
+        width: this.width,
+        height: this.height,
+        color: "white",
+        background: "white",
+        borderRadius: "5px",
+        fontSize: "18px",
+        padding: "16px",
+        cursor: "auto",
+      },
       style: {
         width: this.width,
         height: this.height,
