@@ -1,19 +1,22 @@
 <template>
   <div>
-    <div class="d-flex">
-      <div>ID</div>
-      <div>Name</div>
-      <div>Image</div>
-      <div>Description</div>
-      <div>
-        <Button
-          @onClick="handleAddBtnClick"
-          text="Add Product"
-          width="207px"
-          height="53px"
-          to="/admin/dish/create"
-        />
-      </div>
+    <Button
+      @onClick="handleAddBtnClick"
+      text="Add Product"
+      width="207px"
+      height="53px"
+      to="/admin/dish/create"
+    />
+    <div class="d-flex flex-wrap justify-center">
+      <AdminItem
+        type="DishHeader"
+        :width="'95vw'"
+        :height="'100px'"
+        :imgSize="'70px'"
+        :items="['ID', 'Name', 'Image', 'Description']"
+        @onSubmit="toggleAddBtn"
+        to="/admin/user"
+      />
     </div>
     <div class="d-flex flex-wrap justify-center">
       <div v-for="dish in dishes" :key="dish.id">
@@ -39,7 +42,6 @@
 
 <script>
 import $ from "jquery";
-import Button from "../components/Button.vue";
 import AdminItem from "../components/AdminItem.vue";
 import ModalConfirm from "../components/ModalConfirm.vue";
 export default {
@@ -64,6 +66,9 @@ export default {
     reloadPage() {
       window.location.reload();
       window.location.replace("http://localhost:8080/admin/menu");
+    },
+    toggleAddBtn() {
+      this.$router.push({ name: "adminUser" });
     },
 
     toggleDeleteBtn(id) {

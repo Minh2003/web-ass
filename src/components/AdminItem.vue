@@ -32,6 +32,38 @@
       </v-row>
     </v-container>
 
+    <!-- User Admin Header -->
+    <v-container
+      v-else-if="type == 'UserHeader'"
+      :style="[styleHeader]"
+    >
+      <v-row align="center" justify="center">
+        <v-col :style="[element, primary]">
+          {{ items[0] }}
+        </v-col>
+        <v-col :style="[element, primary]">
+          {{ items[1] }}
+        </v-col>
+        <v-col :style="[element, primary]">
+          {{ items[2] }}
+        </v-col>
+        <v-col :style="[element, primary]">
+          {{ items[3] }}
+        </v-col>
+        <div>
+          <v-col>
+            <div class="add-btn ">
+                <Button
+                  width="207px"
+                  height="53px"
+                  text="White Button"
+                />
+            </div>
+          </v-col>
+        </div>
+      </v-row>
+    </v-container>
+
     <!-- Dish Admin Item -->
     <v-container
       :class="`elevation-2`"
@@ -74,6 +106,39 @@
         </div>
       </v-row>
     </v-container>
+
+    <!-- Dish Admin Header -->
+    <v-container
+      v-else-if="type == 'DishHeader'"
+      :style="[styleHeader]"
+    >
+      <v-row align="center" justify="center">
+        <v-col :style="[element, primary]">
+          {{ items[0] }}
+        </v-col>
+        <v-col :style="[element, primary]">
+          {{ items[1] }}
+        </v-col>
+        <v-col :style="[element, primary]">
+          {{ items[2] }}
+        </v-col>
+        <v-col :style="[element, primary]">
+          {{ items[3] }}
+        </v-col>
+        <div>
+          <v-col>
+            <div class="add-btn">
+                <Button
+                    @onClick="handleSubmit"
+                    text="Add Product"
+                    width="207px"
+                    height="53px"
+                />
+            </div>
+          </v-col>
+        </div>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -107,6 +172,16 @@ export default {
         alignItems: "center",
         justifyContent: "center",
       },
+      styleHeader: {
+        margin: "10px auto",
+        width: this.width,
+        height: this.height,
+        borderRadius: "20px",
+        background: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      },
       element: {
         textAlign: "center",
       },
@@ -122,7 +197,7 @@ export default {
         lineHeight: "160%",
         textDecorationLine: "underline",
         color: "#6a6a6a",
-        padding: '0 30px'
+        padding: '0 15px'
       },
       dishImage: {
         width: this.imgSize,
