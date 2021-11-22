@@ -59,9 +59,6 @@ export default {
           const a = JSON.parse(response).response;
           __this.dishes = a;
         })
-        .fail(function(jqXHR, textStatus, errorThrown) {
-          console.log(textStatus + ": " + errorThrown);
-        });
     },
     handleBookBtnClick() {
       this.$router.push({ name: "makeReservation" });

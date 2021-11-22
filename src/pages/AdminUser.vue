@@ -60,7 +60,6 @@ export default {
         },
 
         deleteUser() {
-            var __this = this;
             var settings = {
                 url: `${process.env.VUE_APP_API_URL}/admin/delete_user/{${this.idUser}}`,
                 method: "POST",
@@ -71,13 +70,9 @@ export default {
             };
 
             $.ajax(settings)
-                .done((response) => {
-                    console.log(response);
-                    __this.reloadPage();
+                .done(() => {
+                    this.$router.go(this.$router.current)
                 })
-                .fail(function(jqXHR, textStatus, errorThrown) {
-                    console.log(textStatus + ": " + errorThrown);
-                });
         },
 
         getUser() {
@@ -96,9 +91,6 @@ export default {
                     const a = JSON.parse(response).response;
                     __this.users = a;
                 })
-                .fail(function(jqXHR, textStatus, errorThrown) {
-                    console.log(textStatus + ": " + errorThrown);
-                });
         },
     },
     beforeMount() {

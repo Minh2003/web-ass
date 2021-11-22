@@ -62,11 +62,10 @@ export default {
     toggleDeleteBtn(id) {
       this.isDeleteModalOpen = !this.isDeleteModalOpen;
       this.idDish = id;
-      console.log(this.idDish);
     },
 
     deleteDish() {
-      var __this = this;
+      // var __this = this;
       var settings = {
         url: `${process.env.VUE_APP_API_URL}/admin/delete_dish/{${this.idDish}}`,
         method: "POST",
@@ -77,13 +76,9 @@ export default {
       };
 
       $.ajax(settings)
-        .done((response) => {
-          console.log(response);
-          __this.reloadPage();
+        .done(() => {
+          this.$router.go(this.$router.current)
         })
-        .fail(function(jqXHR, textStatus, errorThrown) {
-          console.log(textStatus + ": " + errorThrown);
-        });
     },
 
     getMenu() {
@@ -99,9 +94,6 @@ export default {
           const a = JSON.parse(response).response;
           __this.dishes = a;
         })
-        .fail(function(jqXHR, textStatus, errorThrown) {
-          console.log(textStatus + ": " + errorThrown);
-        });
     },
   },
   beforeMount() {
