@@ -90,7 +90,7 @@ export default {
     },
 
     reloadPage() {
-      this.$router.go("/");
+      this.$router.push("/");
     },
 
     handleSubmit() {
@@ -134,7 +134,7 @@ export default {
   },
   beforeMount() {
     if (localStorage.getItem("User") !== null) {
-      this.$router.go("/");
+      this.$router.push("/");
     }
   },
 };

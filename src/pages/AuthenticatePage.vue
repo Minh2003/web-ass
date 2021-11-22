@@ -106,7 +106,7 @@ export default {
       }
     },
     reloadPage() {
-      this.$router.go("/");
+      this.$router.push("/");
     },
 
     Login() {
@@ -142,7 +142,7 @@ export default {
   },
   beforeMount() {
     if (localStorage.getItem("User") !== null) {
-      this.$router.go("/");
+      this.$router.push("/");
     }
   },
 };
