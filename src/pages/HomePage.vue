@@ -55,12 +55,12 @@ export default {
 }
 .home-description {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   text-align: center;
   margin: 0vh 27vw 2vh 27vw;
   font-size: 18px;
   color: white;
-  }
+}
 @media screen and (max-width: 1700px) {
   .background {
     background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
