@@ -57,7 +57,6 @@ export default {
         toggleDeleteBtn(id) {
             this.isDeleteModalOpen = !this.isDeleteModalOpen;
             this.idUser = id;
-            console.log(this.idUser);
         },
 
         deleteUser() {

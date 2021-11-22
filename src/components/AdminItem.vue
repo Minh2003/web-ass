@@ -47,13 +47,11 @@
         <v-col :style="[element, primary]">
           {{ items[3] }}
         </v-col>
-        <div>
-          <v-col>
-            <div class="add-btn ">
-              <Button width="207px" height="53px" text="White Button" />
-            </div>
-          </v-col>
-        </div>
+        <v-col>
+          <div class="add-btn ">
+            <Button width="96px" height="27px" text="White Button" />
+          </div>
+        </v-col>
       </v-row>
     </v-container>
 
