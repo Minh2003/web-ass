@@ -168,8 +168,7 @@ export default {
     },
 
     reloadPage() {
-      window.location.reload();
-      window.location.replace("http://localhost:8080/");
+      this.$router.go("/");
     },
 
     logoutUser() {
@@ -179,7 +178,6 @@ export default {
       if (localStorage.getItem("User") !== "") {
         localStorage.removeItem("User");
       }
-      this.$router.push("/");
       this.reloadPage();
     },
 

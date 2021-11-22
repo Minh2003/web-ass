@@ -51,10 +51,10 @@ export default {
     };
   },
   methods: {
-    reloadPage() {
-      window.location.reload();
-      window.location.replace("http://localhost:8080/admin/menu");
-    },
+    // reloadPage() {
+    //   window.location.reload();
+    //   window.location.replace("http://localhost:8080/admin/menu");
+    // },
     toggleAddBtn() {
       this.$router.push({ name: "adminUser" });
     },

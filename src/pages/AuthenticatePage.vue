@@ -142,7 +142,7 @@ export default {
   },
   beforeMount() {
     if (localStorage.getItem("User") !== null) {
-      window.location.replace("http://localhost:8080/");
+      this.$router.go("/");
     }
   },
 };

@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     routeToCreateBlog() {
-      window.location.replace("http://localhost:8080/admin/blog/create");
+      this.$router.push("/admin/blog/create");
     },
     getBlog() {
       const __this = this;

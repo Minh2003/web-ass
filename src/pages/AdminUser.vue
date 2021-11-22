@@ -49,10 +49,10 @@ export default {
         };
     },
     methods: {
-        reloadPage() {
-            window.location.reload();
-            window.location.replace("http://localhost:8080/admin/user");
-        },
+        // reloadPage() {
+        //     window.location.reload();
+        //     window.location.replace("http://localhost:8080/admin/user");
+        // },
 
         toggleDeleteBtn(id) {
             this.isDeleteModalOpen = !this.isDeleteModalOpen;

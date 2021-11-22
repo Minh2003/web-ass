@@ -21,7 +21,6 @@ const routes = [
   { path: "/blog/:id", name: "blogDetail", component: BlogDetailPage },
   { path: "/blog", name: "blog", component: BlogPage },
   { path: "/menu", name: "menu", component: MenuPage },
-  // { path: "/demo", name: "demoComponent", component: DemoComponent },
   { path: "/reservation", name: "makeReservation", component: ReservationPage },
   { path: "/auth", name: "Authenticate", component: AuthenticatePage },
   { path: "/reg", name: "Register", component: RegisterPage },
