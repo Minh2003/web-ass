@@ -49,17 +49,11 @@ export default {
   },
 
   methods: {
-    test() {
-      console.log("hello");
-    },
     reloadPage() {
-      window.location.reload();
-      window.location.replace(`http://localhost:8080/blog/${this.id}`);
+      this.$router.go(this.$router.current);
     },
 
     PostComment() {
-      console.log("comment ne");
-      console.log(this.commentData);
       const __this = this;
 
       var settings = {
@@ -78,10 +72,8 @@ export default {
 
       $.ajax(settings).then((response) => {
         this.isLoading = false;
-        console.log(response);
         const a = JSON.parse(response).response;
         this.item = a;
-        console.log(this.item);
         __this.reloadPage();
       });
     },

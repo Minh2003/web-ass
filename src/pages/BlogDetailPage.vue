@@ -77,8 +77,7 @@ export default {
 
   methods: {
     reloadPage() {
-      window.location.reload();
-      window.location.replace("http://localhost:8080/blog");
+      this.$router.go(this.$router.current);
     },
 
     routeToEditBlog() {
@@ -102,16 +101,8 @@ export default {
         },
       };
 
-      $.ajax(settings).then((response) => {
-        // this.isLoading = false;
-        console.log(response);
+      $.ajax(settings).then(() => {
         __this.reloadPage();
-
-        // const a = JSON.parse(response).response;
-        // this.item = a;
-        // //console.log(this.item);
-        // this.comments = this.item.comments;
-        //console.log(this.comments);
       });
     },
 
@@ -126,18 +117,14 @@ export default {
 
       $.ajax(settings).then((response) => {
         this.isLoading = false;
-        //console.log(response);
         const a = JSON.parse(response).response;
         this.item = a;
-        //console.log(this.item);
         this.comments = this.item.comments;
-        //console.log(this.comments);
       });
     },
   },
   beforeMount() {
     this.isLoading = true;
-    //console.log(this.$route.params);
     this.GetBlogData();
   },
 };

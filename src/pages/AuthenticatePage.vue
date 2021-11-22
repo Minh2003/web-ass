@@ -2,7 +2,7 @@
   <v-container fluid class="background">
     <v-row>
       <v-col>
-        <v-layout align-center justify-center>  </v-layout>
+        <v-layout align-center justify-center> </v-layout>
       </v-col>
       <v-col>
         <v-layout align-center justify-center>
@@ -83,10 +83,6 @@ export default {
     },
 
     handleSubmit() {
-      //console.log(this.formData);
-      //console.log("submit ne");
-      //   let value = JSON.parse(JSON.stringify(this.formData));
-      //   username = value.;
       this.Login();
     },
 
@@ -97,15 +93,13 @@ export default {
           return error;
         });
       if (validationResult.errors) {
-        //console.log(validationResult.errors[0]);
         this.errorMessages[name] = validationResult.errors[0];
       } else {
         this.errorMessages[name] = "";
       }
     },
     reloadPage() {
-      window.location.reload();
-      window.location.replace("http://localhost:8080/");
+      this.$router.go("/");
     },
 
     Login() {
@@ -122,8 +116,6 @@ export default {
       };
 
       $.ajax(settings).done(function (response) {
-        // console.log(a.token);
-        // console.log(a.user);
         if (JSON.parse(response).status != 200) {
           __this.isFail = true;
           __this.$refs.noteTitle.innerHTML = JSON.parse(response).message;
@@ -136,9 +128,6 @@ export default {
             localStorage.removeItem("User");
           localStorage.setItem("UserToken", a.token);
           localStorage.setItem("User", JSON.stringify(a.user));
-          //const x = localStorage.getItem("User");
-          // console.log(JSON.parse(x));
-          // console.log(this);
           __this.reloadPage();
         }
       });

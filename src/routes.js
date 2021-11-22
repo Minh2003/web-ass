@@ -1,4 +1,4 @@
-import AdminPage from "./pages/AdminPage";
+
 import BlogPage from "./pages/BlogPage";
 import BlogDetailPage from "./pages/BlogDetailPage";
 import HomePage from "./pages/HomePage";
@@ -17,7 +17,7 @@ import AdminUser from "./pages/AdminUser";
 
 const routes = [
   { path: "/", name: "homePage", component: HomePage },
-  { path: "/admin", name: "adminPage", component: AdminPage },
+
   { path: "/about", name: "aboutUsPage", component: AboutUsPage },
   { path: "/blog/:id", name: "blogDetail", component: BlogDetailPage },
   { path: "/blog", name: "blog", component: BlogPage },
