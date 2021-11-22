@@ -64,42 +64,39 @@ export default {
   },
   methods: {
     reloadPage() {
-      window.location.reload();
-      window.location.replace(
-        `http://localhost:8080/blog/${this.$props.comment.blog_id}`
-      );
+      this.$router.go(this.$router.current);
     },
 
     DeleteComment() {
-      const token = localStorage.getItem("UserToken");
-      const __this = this;
-      console.log(token);
-      var settings = {
-        url: `${process.env.VUE_APP_API_URL}/comment/delete/{${this.$props.comment.id}}`,
-        method: "POST",
-        timeout: 0,
-        data: {
-          blogId: this.$props.comment.blog_id,
-        },
-        headers: {
-          "Bear-Token": token,
-        },
-      };
+      if (this.manager != "1") {
+        const token = localStorage.getItem("UserToken");
+        var settings = {
+          url: `${process.env.VUE_APP_API_URL}/comment/delete/{${this.$props.comment.id}}`,
+          method: "POST",
+          timeout: 0,
+          data: {
+            blogId: this.$props.comment.blog_id,
+          },
+          headers: {
+            "Bear-Token": token,
+          },
+        };
 
-      $.ajax(settings).done(function(response) {
-        const a = JSON.parse(response);
-        console.log(a);
-        __this.reloadPage();
-        // console.log(a.token);
-        // console.log(a.user);
-        // if (localStorage.getItem("UserToken") != "")
-        //   localStorage.removeItem("UserToken");
-        // if (localStorage.getItem("User") != "") localStorage.removeItem("User");
-        // localStorage.setItem("UserToken", a.token);
-        // localStorage.setItem("User", JSON.stringify(a.user));
-        // const x = localStorage.getItem("User");
-        // console.log(JSON.parse(x));
-      });
+        $.ajax(settings).done(function () {});
+      } else {
+        const token = localStorage.getItem("UserToken");
+        //const __this = this;
+        settings = {
+          url: `${process.env.VUE_APP_API_URL}/admin/delete_comment/{${this.$props.comment.id}}`,
+          method: "POST",
+          timeout: 0,
+          data: {},
+          headers: {
+            "Bear-Token": token,
+          },
+        };
+        $.ajax(settings).done(function () {});
+      }
     },
   },
 };

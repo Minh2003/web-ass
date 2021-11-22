@@ -41,7 +41,7 @@ export default {
   background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
     url(https://s3.eu-west-2.amazonaws.com/dc-york/images/_1800x875_crop_center-center_90_none/jay-wennington-N_Y88TWmGwA-unsplash_2021-05-26-084422.jpg);
   background-size: cover;
-  height: 75vh;
+  height: 100vh;
 }
 .home-wrapper {
   margin: 20vh;

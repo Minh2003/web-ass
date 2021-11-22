@@ -67,7 +67,6 @@ export default {
 
       $.ajax(settings).done(function(response) {
         const a = JSON.parse(response).response;
-        //console.log(response);
         __this.blogs = a;
       });
     },
