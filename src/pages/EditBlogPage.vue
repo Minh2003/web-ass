@@ -96,7 +96,6 @@ export default {
         response = JSON.parse(response);
         if (response.status === 200) {
           const blog = response.response.blog;
-          console.log(blog);
           this.formData.imageUrl = blog.image;
           this.formData.blogTitle = blog.title;
           this.formData.blogContent = blog.content;
@@ -113,7 +112,6 @@ export default {
           return error;
         });
       if (validationResult.errors) {
-        console.log(validationResult.errors[0]);
         this.errorMessages[name] = validationResult.errors[0];
       } else {
         this.errorMessages[name] = "";
@@ -128,7 +126,6 @@ export default {
     handleSubmit() {
       var __this = this;
       const formData = JSON.parse(JSON.stringify(this.formData));
-      // console.log("Edit/Create Blog FormData: ", formData);
 
       const UserToken = localStorage.getItem("UserToken");
       if (UserToken === "") {
@@ -157,7 +154,6 @@ export default {
         };
         $.ajax(settings).done(function(response) {
           response = JSON.parse(response);
-          // console.log("Create Blog Response: ", response);
           if (response.status == 200) {
             __this.$refs.noteTitle.innerHTML = "Your Blog Have Been Created";
             __this.$router.replace({ name: "blog" });
@@ -185,7 +181,6 @@ export default {
         };
         $.ajax(settings).done(function(response) {
           response = JSON.parse(response);
-          // console.log("Edit Blog Response: ", response);
           if (response.status == 200) {
             __this.$refs.noteTitle.innerHTML = "Your Blog Have Been Edited";
             __this.$router.replace({ name: "blog" });

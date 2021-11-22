@@ -71,7 +71,6 @@ export default {
   },
   beforeMount() {
     this.currentDishId = this.$route.params.id;
-    console.log(this.currentDishId);
     if (this.currentDishId) {
       this.GetDishData();
     }
@@ -94,11 +93,9 @@ export default {
         data: {},
         headers: {},
       };
-      console.log("Get Dish Setting", settings);
 
       $.ajax(settings).then((response) => {
         response = JSON.parse(response);
-        console.log("Get Dish Response", response);
         if (response.status === 200) {
           const dish = response.response;
           this.formData.dishId = this.currentDishId;
@@ -118,7 +115,6 @@ export default {
           return error;
         });
       if (validationResult.errors) {
-        console.log(validationResult.errors[0]);
         this.errorMessages[name] = validationResult.errors[0];
       } else {
         this.errorMessages[name] = "";
@@ -133,7 +129,6 @@ export default {
     handleSubmit() {
       var __this = this;
       const formData = JSON.parse(JSON.stringify(this.formData));
-      console.log("Edit/Create Dish FormData: ", formData);
 
       const UserToken = localStorage.getItem("UserToken");
       if (UserToken === "") {
@@ -162,7 +157,6 @@ export default {
         };
         $.ajax(settings).done(function(response) {
           response = JSON.parse(response);
-          console.log("Create Dish Response: ", response);
           if (response.status == 200) {
             __this.$refs.noteTitle.innerHTML = "Your Dish Have Been Created";
             __this.$router.replace({ name: "menu" });
@@ -190,7 +184,6 @@ export default {
         };
         $.ajax(settings).done(function(response) {
           response = JSON.parse(response);
-          // console.log("Edit Dish Response: ", response);
           if (response.status == 200) {
             __this.$refs.noteTitle.innerHTML = "Your Dish Have Been Edited";
             __this.$router.replace({ name: "menu" });

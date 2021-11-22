@@ -62,10 +62,7 @@ export default {
         confirmPassword: "",
       },
       schema: yup.object().shape({
-        email: yup
-          .string()
-          .email()
-          .label("Email"),
+        email: yup.string().email().label("Email"),
         phone: yup
           .string()
           .matches(/^[0-9]{10}$/, "Phone number must be 10 digits"),
@@ -81,7 +78,6 @@ export default {
           return error;
         });
       if (validationResult.errors) {
-        console.log(validationResult.errors[0]);
         this.errorMessages[name] = validationResult.errors[0];
       } else {
         this.errorMessages[name] = "";
@@ -90,21 +86,14 @@ export default {
 
     handleFormChange(newData) {
       this.formData[newData.name] = newData.value;
-      console.log("Form Changed");
       this.handleInputValidation(newData);
     },
 
     reloadPage() {
-      window.location.reload();
-      window.location.replace("http://localhost:8080/");
+      this.$router.go("/");
     },
 
     handleSubmit() {
-      console.log(this.formData);
-      console.log("submit ne");
-      let value = JSON.parse(JSON.stringify(this.formData));
-      //   username = value.;
-      console.log(value);
       this.register();
     },
 
@@ -126,24 +115,18 @@ export default {
         headers: {},
       };
 
-      $.ajax(settings).then(function(response) {
-        console.log("Register response: ", JSON.parse(response));
+      $.ajax(settings).then(function (response) {
         if (JSON.parse(response).status != 200) {
           __this.isFail = true;
           __this.$refs.noteTitle.innerHTML = JSON.parse(response).message;
         } else {
           const a = JSON.parse(response).response;
-          console.log("a: ", a);
-          // console.log(a.token);
-          // console.log(a.user);
           if (localStorage.getItem("UserToken") != "")
             localStorage.removeItem("UserToken");
           if (localStorage.getItem("User") != "")
             localStorage.removeItem("User");
           localStorage.setItem("UserToken", a.token);
           localStorage.setItem("User", JSON.stringify(a.user));
-          const x = localStorage.getItem("User");
-          console.log(JSON.parse(x));
           __this.reloadPage();
         }
       });

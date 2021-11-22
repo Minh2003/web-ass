@@ -46,7 +46,6 @@ export default {
   }),
   methods: {
     logoutUser() {
-      console.log("Logout User");
       if (localStorage.getItem("UserToken") !== "") {
         localStorage.removeItem("UserToken");
       }

@@ -81,7 +81,6 @@ export default {
   },
   methods: {
     handleInputChange(event) {
-      console.log(event.target.value);
       this.$emit("onInputChange", event.target.value);
     },
   },

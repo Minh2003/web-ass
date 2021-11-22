@@ -158,7 +158,7 @@
 
   <div v-else-if="type === 'EditDish'">
     <v-form class="d-flex flex-wrap justify-center">
-      <ControlField
+      <!-- <ControlField
         @onInputChange="handleFormChange($event, 'dishId')"
         type="DishTitle"
         label="Dish Id"
@@ -166,7 +166,7 @@
         rows="2"
         :value="data.dishId"
         :errorMessage="errorMessages.dishId"
-      />
+      /> -->
       <ControlField
         @onInputChange="handleFormChange($event, 'dishTitle')"
         type="DishTitle"
@@ -370,7 +370,6 @@ export default {
   computed: {
     isDisabled() {
       for (const [key, value] of Object.entries(this.errorMessages)) {
-        // console.log(key, value);
         if (value !== "" && key !== "") {
           return true;
         }

@@ -110,7 +110,6 @@ export default {
           return error;
         });
       if (validationResult.errors) {
-        console.log(validationResult.errors[0]);
         this.errorMessages[name] = validationResult.errors[0];
       } else {
         this.errorMessages[name] = "";
@@ -141,7 +140,6 @@ export default {
         this.notes["Date Time"] = date + " at " + time;
         this.notes["Phone Number"] = phoneNumber;
         this.notes["Your Message"] = description;
-        console.log("this.notes: ", this.notes);
         this.isSuccess = true;
       } else {
         this.isSuccess = false;
@@ -151,7 +149,6 @@ export default {
     handleSubmit() {
       var __this = this;
       const formData = JSON.parse(JSON.stringify(this.formData));
-      console.log(formData);
 
       var settings = {
         url: `${process.env.VUE_APP_API_URL}/reservation`,
@@ -178,7 +175,6 @@ export default {
         __this.$refs.note.style.display = "flex";
         if (response.status == 200) {
           __this.$refs.noteTitle.innerHTML = "Your Reservation Is Submitted";
-          console.log(__this.editNotes);
           __this.editNotes(response.response);
         } else {
           __this.$refs.noteTitle.innerHTML = response.message;
