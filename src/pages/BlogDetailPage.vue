@@ -77,7 +77,7 @@ export default {
 
   methods: {
     reloadPage() {
-      this.$router.go(this.$router.current);
+      this.$router.push("/blog");
     },
 
     routeToEditBlog() {

@@ -68,6 +68,7 @@ export default {
     },
 
     DeleteComment() {
+      var __this = this;
       if (this.manager != "1") {
         const token = localStorage.getItem("UserToken");
         var settings = {
@@ -82,7 +83,7 @@ export default {
           },
         };
 
-        $.ajax(settings).done(function () {});
+        $.ajax(settings).done(function () { __this.reloadPage() });
       } else {
         const token = localStorage.getItem("UserToken");
         //const __this = this;
@@ -95,7 +96,7 @@ export default {
             "Bear-Token": token,
           },
         };
-        $.ajax(settings).done(function () {});
+        $.ajax(settings).done(function () { __this.reloadPage() });
       }
     },
   },
