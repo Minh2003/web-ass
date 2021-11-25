@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 
 import App from './App.vue'
-import storeConfig from './store'
+// import storeConfig from './store'
 import routes from './routes'
 import vuetify from './plugin/vuetify'
 
@@ -12,12 +12,12 @@ Vue.use(Vuex)
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 
-const store = new Vuex.Store(storeConfig)
+// const store = new Vuex.Store(storeConfig)
 const router = new VueRouter({ routes, mode: 'history' })
 
 
 let app = new Vue({
-  store,
+  //store,
   router,
   vuetify,
   render: h => h(App),
