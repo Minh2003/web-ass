@@ -90,6 +90,7 @@ export default {
     },
 
     reloadPage() {
+      this.$router.go();
       this.$router.push("/");
     },
 
