@@ -1,10 +1,12 @@
 <template>
   <v-container fluid class="background">
-    <v-row>
+    <v-container>
       <v-col>
-        <v-layout align-center justify-center> </v-layout>
-      </v-col>
-      <v-col>
+        <div class="title-wrapper">
+          <div class="menu-title">
+            <p>Sign up</p>
+          </div>
+        </div>
         <v-layout align-center justify-center>
           <v-col>
             <Form
@@ -17,9 +19,9 @@
           </v-col>
         </v-layout>
         <v-layout align-center justify-center>
-          <span class="text">Hoặc</span>
+          <span class="text">Or</span>
           <v-btn text color="#e1651f" to="/auth">
-            <span class="linkText">Đăng nhập</span>
+            <span class="linkText">Sign in</span>
           </v-btn>
         </v-layout>
         <div v-show="this.isFail" class="reservation-note">
@@ -27,7 +29,7 @@
           <ReservationNote :notes="{}" />
         </div>
       </v-col>
-    </v-row>
+    </v-container>
   </v-container>
 </template>
 
@@ -90,8 +92,9 @@ export default {
     },
 
     reloadPage() {
+      this.$router.go();
       this.$router.push("/");
-      this.$router.go('/');
+      this.$router.go("/");
     },
 
     handleSubmit() {
@@ -171,5 +174,19 @@ export default {
 }
 .text {
   color: rgb(159, 159, 159);
+}
+.content {
+  width: 70%;
+}
+@import url("https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap");
+.title-wrapper {
+  margin-bottom: 4%;
+}
+.menu-title {
+  font-family: Oleo Script Swash Caps;
+  text-align: center;
+  font-size: 500%;
+  margin: 2% 0% -1% 0%;
+  color: rgb(255, 255, 255);
 }
 </style>

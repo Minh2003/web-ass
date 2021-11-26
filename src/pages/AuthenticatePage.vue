@@ -1,10 +1,12 @@
 <template>
   <v-container fluid class="background">
-    <v-row>
+    <v-container class="content">
       <v-col>
-        <v-layout align-center justify-center> </v-layout>
-      </v-col>
-      <v-col>
+        <div class="title-wrapper">
+          <div class="menu-title">
+            <p>Sign in</p>
+          </div>
+        </div>
         <v-layout align-center justify-center>
           <v-col>
             <Form
@@ -17,9 +19,9 @@
           </v-col>
         </v-layout>
         <v-layout align-center justify-center>
-          <span class="text">Hoặc</span>
+          <span class="text">Or</span>
           <v-btn text color="#e1651f" to="/reg">
-            <span class="linkText">Đăng ký</span>
+            <span class="linkText">Sign up</span>
           </v-btn>
         </v-layout>
         <div v-show="this.isFail" class="reservation-note">
@@ -27,7 +29,7 @@
           <ReservationNote :notes="{}" />
         </div>
       </v-col>
-    </v-row>
+    </v-container>
   </v-container>
 </template>
 
@@ -55,10 +57,7 @@ export default {
         password: "",
       },
       schema: yup.object().shape({
-        email: yup
-          .string()
-          .email()
-          .label("Email"),
+        email: yup.string().email().label("Email"),
         phone: yup
           .string()
           .matches(/^[0-9]{10}$/, "Phone number must be 10 digits"),
@@ -74,11 +73,7 @@ export default {
             /(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)/gm,
             "Time must be of HH:MM:SS"
           ),
-        totalPeople: yup
-          .number()
-          .min(1)
-          .max(30)
-          .label("Number of persons"),
+        totalPeople: yup.number().min(1).max(30).label("Number of persons"),
       }),
     };
   },
@@ -106,8 +101,9 @@ export default {
       }
     },
     reloadPage() {
+      this.$router.go();
       this.$router.push("/");
-      this.$router.go('/');
+      this.$router.go("/");
     },
 
     Login() {
@@ -123,7 +119,7 @@ export default {
         headers: {},
       };
 
-      $.ajax(settings).done(function(response) {
+      $.ajax(settings).done(function (response) {
         if (JSON.parse(response).status != 200) {
           __this.isFail = true;
           __this.$refs.noteTitle.innerHTML = JSON.parse(response).message;
@@ -179,5 +175,20 @@ export default {
 }
 .text {
   color: rgb(159, 159, 159);
+}
+
+.content {
+  width: 70%;
+}
+@import url("https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap");
+.title-wrapper {
+  margin-bottom: 4%;
+}
+.menu-title {
+  font-family: Oleo Script Swash Caps;
+  text-align: center;
+  font-size: 500%;
+  margin: 2% 0% -1% 0%;
+  color: rgb(255, 255, 255);
 }
 </style>

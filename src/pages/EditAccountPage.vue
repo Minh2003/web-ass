@@ -160,7 +160,7 @@ export default {
 
     reloadPage() {
       this.$router.push("/");
-      this.$router.go('/');
+      this.$router.go("/");
     },
 
     logoutUser() {
