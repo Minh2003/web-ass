@@ -12,7 +12,12 @@
       />
     </div>
     <div class="d-flex flex-wrap justify-center">
-      <div v-for="dish in dishes" :key="dish.id">
+      <div
+        v-for="dish in dishes.filter(
+          (_, index) => index >= (page - 1) * 6 && index <= page * 6 - 1
+        )"
+        :key="dish.id"
+      >
         <AdminItem
           type="Dish"
           :width="'95vw'"
@@ -22,6 +27,19 @@
           @onSubmit="toggleDeleteBtn(dish.id)"
         />
       </div>
+    </div>
+    <div class="text-center">
+      <v-pagination
+        class="mt-4 mb-8"
+        v-model="modelPage"
+        color="#e1651f"
+        :length="
+          dishes.length % 6 === 0
+            ? Math.floor(dishes.length / 6)
+            : Math.floor(dishes.length / 6) + 1
+        "
+        circle
+      ></v-pagination>
     </div>
     <ModalConfirm
       @toggleModalEvent="toggleDeleteBtn()"
@@ -48,7 +66,19 @@ export default {
       isDeleteModalOpen: false,
       idDish: 0,
       dishes: [],
+      page: 1,
     };
+  },
+
+  computed: {
+    modelPage: {
+      get() {
+        return this.page;
+      },
+      set(value) {
+        this.page = value;
+      },
+    },
   },
   methods: {
     // reloadPage() {
@@ -75,10 +105,9 @@ export default {
         },
       };
 
-      $.ajax(settings)
-        .done(() => {
-          this.$router.go(this.$router.current)
-        })
+      $.ajax(settings).done(() => {
+        this.$router.go(this.$router.current);
+      });
     },
 
     getMenu() {
@@ -89,11 +118,10 @@ export default {
         timeout: 0,
       };
 
-      $.ajax(settings)
-        .done(function(response) {
-          const a = JSON.parse(response).response;
-          __this.dishes = a;
-        })
+      $.ajax(settings).done(function (response) {
+        const a = JSON.parse(response).response;
+        __this.dishes = a;
+      });
     },
   },
   beforeMount() {

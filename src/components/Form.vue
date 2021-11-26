@@ -21,7 +21,7 @@
       />
       <Button
         @onClick="handleSumbit"
-        text="Log in"
+        text="Sign in"
         width="257px"
         height="64px"
         :isDisabled="isDisabled"
