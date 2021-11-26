@@ -150,7 +150,7 @@ export default {
   background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
     url(https://s3.eu-west-2.amazonaws.com/dc-york/images/_1800x875_crop_center-center_90_none/jay-wennington-N_Y88TWmGwA-unsplash_2021-05-26-084422.jpg);
   background-size: cover;
-  height: 100vh;
+  height: 1024px;
 }
 .reservation-note {
   margin: 20px auto;
@@ -190,5 +190,21 @@ export default {
   font-size: 500%;
   margin: 2% 0% -1% 0%;
   color: rgb(255, 255, 255);
+}
+
+@media (max-width: 35em) {
+  .background {
+    height: 824px;
+  }
+  .content {
+    width: 85%;
+  }
+  .menu-title {
+    font-family: Oleo Script Swash Caps;
+    text-align: center;
+    font-size: 300%;
+    margin: 2% 0% -1% 0%;
+    color: rgb(255, 255, 255);
+  }
 }
 </style>
