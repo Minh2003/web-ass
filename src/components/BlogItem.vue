@@ -3,7 +3,7 @@
     <v-card
       :to="'/blog/' + blog.id"
       class="mx-auto my-12"
-      max-width="311"
+      width="311"
       height="400"
     >
       <div>

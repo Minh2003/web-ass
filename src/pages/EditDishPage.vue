@@ -159,7 +159,7 @@ export default {
           response = JSON.parse(response);
           if (response.status == 200) {
             __this.$refs.noteTitle.innerHTML = "Your Dish Have Been Created";
-            __this.$router.replace({ name: "menu" });
+            __this.$router.replace({ name: "adminMenu" });
           } else {
             __this.$refs.noteTitle.innerHTML = response.message;
           }
@@ -186,7 +186,7 @@ export default {
           response = JSON.parse(response);
           if (response.status == 200) {
             __this.$refs.noteTitle.innerHTML = "Your Dish Have Been Edited";
-            __this.$router.replace({ name: "menu" });
+            __this.$router.replace({ name: "adminMenu" });
           } else {
             __this.$refs.noteTitle.innerHTML = response.message;
           }
