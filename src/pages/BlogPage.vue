@@ -25,7 +25,7 @@
     </div>
 
     <div class="d-flex flex-wrap justify-center">
-      <div v-for="blog in blogs" :key="blog.id">
+      <div v-for="blog in blogs.slice().reverse()" :key="blog.id">
         <blog-item :blog="blog" />
       </div>
     </div>
